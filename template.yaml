@@ -1,0 +1,220 @@
+Resources:
+  pesquisaRole0CBC6A3D:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Statement:
+          - Action: sts:AssumeRole
+            Effect: Allow
+            Principal:
+              Service:
+                - cloudformation.amazonaws.com
+                - events.amazonaws.com
+                - lambda.amazonaws.com
+                - scheduler.amazonaws.com
+        Version: "2012-10-17"
+      RoleName: pesquisaRole
+    Metadata:
+      aws:cdk:path: PesquisaStack/pesquisaRole/Resource
+  pesquisaRoleDefaultPolicyF389A827:
+    Type: AWS::IAM::Policy
+    Properties:
+      PolicyDocument:
+        Statement:
+          - Action: lambda:InvokeFunction
+            Effect: Allow
+            Resource: arn:aws:lambda:us-east-2:851725500352:function:*
+          - Action:
+              - iam:PassRole
+              - sts:AssumeRole
+            Effect: Allow
+            Resource: arn:aws:iam::851725500352:role/pesquisaRole
+          - Action:
+              - SNS:Publish
+              - logs:CreateLogGroup
+              - logs:CreateLogStream
+              - logs:PutLogEvents
+            Effect: Allow
+            Resource: "*"
+          - Action: sns:Publish
+            Effect: Allow
+            Resource:
+              - arn:aws:sns:us-east-1*
+              - Ref: TopicPesquisa56C05A00
+        Version: "2012-10-17"
+      PolicyName: pesquisaRoleDefaultPolicyF389A827
+      Roles:
+        - Ref: pesquisaRole0CBC6A3D
+    Metadata:
+      aws:cdk:path: PesquisaStack/pesquisaRole/DefaultPolicy/Resource
+  loginUserVoteLambda06B39DFA:
+    Type: AWS::Lambda::Function
+    Properties:
+      Code:
+        S3Bucket: cdk-hnb659fds-assets-851725500352-us-east-1
+        S3Key: bc0351c0d9af33c6cd8295f2c6631acf95c056b0de58dc2b3b1359bd23b5a2e4.zip
+      Environment:
+        Variables:
+          ENV: dev
+          PGHOST: ep-super-bird-a4pe5usj.us-east-1.aws.neon.tech
+          PGUSER: pesquisa_owner
+          PGPASSWORD: oyWzVYU34NbE
+          PGDATABASE: pesquisa
+          CDK_DEFAULT_ACCOUNT: "851725500352"
+          CDK_DEFAULT_REGION: us-east-1
+          SECRET_UER_VOTE: 10caf33a2468a73fe739157e956989d16d00257993e406335b6a57e7a9f8be1a0d70dcf776e4e5a6de1298c3f4373eb91662cf9d4bbba276601823887cef3252
+          SECRET_USER_ADMIN: 88efbeb658dabedfa3e434c7547d4d3672f7a278b97822228819ae603a8a3130820fdcc554ea7b86fb96017fed65723e3049c6629d27c55bd02be64b9d7e9183
+      Handler: src/auth/user-vote/login-user-vote.handler
+      MemorySize: 128
+      Role:
+        Fn::GetAtt:
+          - pesquisaRole0CBC6A3D
+          - Arn
+      Runtime: nodejs18.x
+      Timeout: 10
+    DependsOn:
+      - pesquisaRoleDefaultPolicyF389A827
+      - pesquisaRole0CBC6A3D
+    Metadata:
+      aws:cdk:path: PesquisaStack/loginUserVoteLambda/Resource
+      aws:asset:path: /home/misael/Documentos/Projetos/Pesquisa/lambda
+      aws:asset:is-bundled: false
+      aws:asset:property: Code
+  loginUserVoteLambdaEventInvokeConfig130DC075:
+    Type: AWS::Lambda::EventInvokeConfig
+    Properties:
+      FunctionName:
+        Ref: loginUserVoteLambda06B39DFA
+      MaximumRetryAttempts: 0
+      Qualifier: $LATEST
+    Metadata:
+      aws:cdk:path: PesquisaStack/loginUserVoteLambda/EventInvokeConfig/Resource
+  loginUserVoteLambdaAllowInvokePesquisaStackTopicPesquisa8F70666450E55C3C:
+    Type: AWS::Lambda::Permission
+    Properties:
+      Action: lambda:InvokeFunction
+      FunctionName:
+        Fn::GetAtt:
+          - loginUserVoteLambda06B39DFA
+          - Arn
+      Principal: sns.amazonaws.com
+      SourceArn:
+        Ref: TopicPesquisa56C05A00
+    Metadata:
+      aws:cdk:path: PesquisaStack/loginUserVoteLambda/AllowInvoke:PesquisaStackTopicPesquisa8F706664
+  loginUserVoteLambdaTopicPesquisa11802BA7:
+    Type: AWS::SNS::Subscription
+    Properties:
+      Endpoint:
+        Fn::GetAtt:
+          - loginUserVoteLambda06B39DFA
+          - Arn
+      Protocol: lambda
+      TopicArn:
+        Ref: TopicPesquisa56C05A00
+    Metadata:
+      aws:cdk:path: PesquisaStack/loginUserVoteLambda/TopicPesquisa/Resource
+  loginUserVoteLambdaFunctionUrl768BAA8A:
+    Type: AWS::Lambda::Url
+    Properties:
+      AuthType: NONE
+      TargetFunctionArn:
+        Fn::GetAtt:
+          - loginUserVoteLambda06B39DFA
+          - Arn
+    Metadata:
+      aws:cdk:path: PesquisaStack/loginUserVoteLambda/FunctionUrl/Resource
+  loginUserVoteLambdainvokefunctionurl01A552CC:
+    Type: AWS::Lambda::Permission
+    Properties:
+      Action: lambda:InvokeFunctionUrl
+      FunctionName:
+        Fn::GetAtt:
+          - loginUserVoteLambda06B39DFA
+          - Arn
+      FunctionUrlAuthType: NONE
+      Principal: "*"
+    Metadata:
+      aws:cdk:path: PesquisaStack/loginUserVoteLambda/invoke-function-url
+  ConfirmSmsserVoteLambdaD40457B5:
+    Type: AWS::Lambda::Function
+    Properties:
+      Code:
+        S3Bucket: cdk-hnb659fds-assets-851725500352-us-east-1
+        S3Key: bc0351c0d9af33c6cd8295f2c6631acf95c056b0de58dc2b3b1359bd23b5a2e4.zip
+      Environment:
+        Variables:
+          ENV: dev
+          PGHOST: ep-super-bird-a4pe5usj.us-east-1.aws.neon.tech
+          PGUSER: pesquisa_owner
+          PGPASSWORD: oyWzVYU34NbE
+          PGDATABASE: pesquisa
+          CDK_DEFAULT_ACCOUNT: "851725500352"
+          CDK_DEFAULT_REGION: us-east-1
+          SECRET_UER_VOTE: 10caf33a2468a73fe739157e956989d16d00257993e406335b6a57e7a9f8be1a0d70dcf776e4e5a6de1298c3f4373eb91662cf9d4bbba276601823887cef3252
+          SECRET_USER_ADMIN: 88efbeb658dabedfa3e434c7547d4d3672f7a278b97822228819ae603a8a3130820fdcc554ea7b86fb96017fed65723e3049c6629d27c55bd02be64b9d7e9183
+      Handler: src/auth/user-vote/confirm-sms.handler
+      MemorySize: 128
+      Role:
+        Fn::GetAtt:
+          - pesquisaRole0CBC6A3D
+          - Arn
+      Runtime: nodejs18.x
+      Timeout: 10
+    DependsOn:
+      - pesquisaRoleDefaultPolicyF389A827
+      - pesquisaRole0CBC6A3D
+    Metadata:
+      aws:cdk:path: PesquisaStack/ConfirmSmsserVoteLambda/Resource
+      aws:asset:path: /home/misael/Documentos/Projetos/Pesquisa/lambda
+      aws:asset:is-bundled: false
+      aws:asset:property: Code
+  ConfirmSmsserVoteLambdaEventInvokeConfig470C5488:
+    Type: AWS::Lambda::EventInvokeConfig
+    Properties:
+      FunctionName:
+        Ref: ConfirmSmsserVoteLambdaD40457B5
+      MaximumRetryAttempts: 0
+      Qualifier: $LATEST
+    Metadata:
+      aws:cdk:path: PesquisaStack/ConfirmSmsserVoteLambda/EventInvokeConfig/Resource
+  ConfirmSmsserVoteLambdaFunctionUrl13EA9C5D:
+    Type: AWS::Lambda::Url
+    Properties:
+      AuthType: NONE
+      TargetFunctionArn:
+        Fn::GetAtt:
+          - ConfirmSmsserVoteLambdaD40457B5
+          - Arn
+    Metadata:
+      aws:cdk:path: PesquisaStack/ConfirmSmsserVoteLambda/FunctionUrl/Resource
+  ConfirmSmsserVoteLambdainvokefunctionurlD216FEA8:
+    Type: AWS::Lambda::Permission
+    Properties:
+      Action: lambda:InvokeFunctionUrl
+      FunctionName:
+        Fn::GetAtt:
+          - ConfirmSmsserVoteLambdaD40457B5
+          - Arn
+      FunctionUrlAuthType: NONE
+      Principal: "*"
+    Metadata:
+      aws:cdk:path: PesquisaStack/ConfirmSmsserVoteLambda/invoke-function-url
+  TopicPesquisa56C05A00:
+    Type: AWS::SNS::Topic
+    Properties:
+      DisplayName: Pesquisa
+    Metadata:
+      aws:cdk:path: PesquisaStack/TopicPesquisa/Resource
+  CDKMetadata:
+    Type: AWS::CDK::Metadata
+    Properties:
+      Analytics: v2:deflate64:H4sIAAAAAAAA/22OwWrDMBBEvyV3eRsnLT03oYXegt2cgyxvwsbyKmglhyL070UOLhR6mtl5zDIbqF+eoV7pu1SmHypLHaQ2aDMofZdTIj1CapxFtT/zrAdnyXyX8+Gysnrseg3pI7IJ5LiwX/8+IYdPntyAe8dnuhT6b3hAP5JIKS3to7eFHL3NSrYnLYJB4K2Iki3sohkw7LSgEhZIbezEeLotI/7cX+5GpqSzyVk1KC56g2r+1wZ9IZ6HLCArdj3CVZ6mzRrqV1ivrkJU+ciBRoTmoT/pAWqnQwEAAA==
+    Metadata:
+      aws:cdk:path: PesquisaStack/CDKMetadata/Default
+Parameters:
+  BootstrapVersion:
+    Type: AWS::SSM::Parameter::Value<String>
+    Default: /cdk-bootstrap/hnb659fds/version
+    Description: Version of the CDK Bootstrap resources in this environment, automatically retrieved from SSM Parameter Store. [cdk:skip]
+
