@@ -52,7 +52,7 @@ Resources:
     Properties:
       Code:
         S3Bucket: cdk-hnb659fds-assets-851725500352-us-east-1
-        S3Key: bc0351c0d9af33c6cd8295f2c6631acf95c056b0de58dc2b3b1359bd23b5a2e4.zip
+        S3Key: 3bf5bedf10366e51b68ad92198d718229da3de944c6cf00a4f22a309caebf8b1.zip
       Environment:
         Variables:
           ENV: dev
@@ -62,9 +62,9 @@ Resources:
           PGDATABASE: pesquisa
           CDK_DEFAULT_ACCOUNT: "851725500352"
           CDK_DEFAULT_REGION: us-east-1
-          SECRET_UER_VOTE: 10caf33a2468a73fe739157e956989d16d00257993e406335b6a57e7a9f8be1a0d70dcf776e4e5a6de1298c3f4373eb91662cf9d4bbba276601823887cef3252
+          SECRET_USER_VOTE: 10caf33a2468a73fe739157e956989d16d00257993e406335b6a57e7a9f8be1a0d70dcf776e4e5a6de1298c3f4373eb91662cf9d4bbba276601823887cef3252
           SECRET_USER_ADMIN: 88efbeb658dabedfa3e434c7547d4d3672f7a278b97822228819ae603a8a3130820fdcc554ea7b86fb96017fed65723e3049c6629d27c55bd02be64b9d7e9183
-      Handler: src/auth/user-vote/login-user-vote.handler
+      Handler: src/functions/auth/user-vote/login-user-vote.handler
       MemorySize: 128
       Role:
         Fn::GetAtt:
@@ -141,7 +141,7 @@ Resources:
     Properties:
       Code:
         S3Bucket: cdk-hnb659fds-assets-851725500352-us-east-1
-        S3Key: bc0351c0d9af33c6cd8295f2c6631acf95c056b0de58dc2b3b1359bd23b5a2e4.zip
+        S3Key: 3bf5bedf10366e51b68ad92198d718229da3de944c6cf00a4f22a309caebf8b1.zip
       Environment:
         Variables:
           ENV: dev
@@ -151,9 +151,9 @@ Resources:
           PGDATABASE: pesquisa
           CDK_DEFAULT_ACCOUNT: "851725500352"
           CDK_DEFAULT_REGION: us-east-1
-          SECRET_UER_VOTE: 10caf33a2468a73fe739157e956989d16d00257993e406335b6a57e7a9f8be1a0d70dcf776e4e5a6de1298c3f4373eb91662cf9d4bbba276601823887cef3252
+          SECRET_USER_VOTE: 10caf33a2468a73fe739157e956989d16d00257993e406335b6a57e7a9f8be1a0d70dcf776e4e5a6de1298c3f4373eb91662cf9d4bbba276601823887cef3252
           SECRET_USER_ADMIN: 88efbeb658dabedfa3e434c7547d4d3672f7a278b97822228819ae603a8a3130820fdcc554ea7b86fb96017fed65723e3049c6629d27c55bd02be64b9d7e9183
-      Handler: src/auth/user-vote/confirm-sms.handler
+      Handler: src/functions/auth/user-vote/confirm-sms-user-vote.handler
       MemorySize: 128
       Role:
         Fn::GetAtt:
@@ -200,6 +200,1128 @@ Resources:
       Principal: "*"
     Metadata:
       aws:cdk:path: PesquisaStack/ConfirmSmsserVoteLambda/invoke-function-url
+  ValideTokenUserVoteLambda5EAB3A0A:
+    Type: AWS::Lambda::Function
+    Properties:
+      Code:
+        S3Bucket: cdk-hnb659fds-assets-851725500352-us-east-1
+        S3Key: 3bf5bedf10366e51b68ad92198d718229da3de944c6cf00a4f22a309caebf8b1.zip
+      Environment:
+        Variables:
+          ENV: dev
+          PGHOST: ep-super-bird-a4pe5usj.us-east-1.aws.neon.tech
+          PGUSER: pesquisa_owner
+          PGPASSWORD: oyWzVYU34NbE
+          PGDATABASE: pesquisa
+          CDK_DEFAULT_ACCOUNT: "851725500352"
+          CDK_DEFAULT_REGION: us-east-1
+          SECRET_USER_VOTE: 10caf33a2468a73fe739157e956989d16d00257993e406335b6a57e7a9f8be1a0d70dcf776e4e5a6de1298c3f4373eb91662cf9d4bbba276601823887cef3252
+          SECRET_USER_ADMIN: 88efbeb658dabedfa3e434c7547d4d3672f7a278b97822228819ae603a8a3130820fdcc554ea7b86fb96017fed65723e3049c6629d27c55bd02be64b9d7e9183
+      Handler: src/functions/auth/user-vote/valide-token-user-vote.handler
+      MemorySize: 128
+      Role:
+        Fn::GetAtt:
+          - pesquisaRole0CBC6A3D
+          - Arn
+      Runtime: nodejs18.x
+      Timeout: 10
+    DependsOn:
+      - pesquisaRoleDefaultPolicyF389A827
+      - pesquisaRole0CBC6A3D
+    Metadata:
+      aws:cdk:path: PesquisaStack/ValideTokenUserVoteLambda/Resource
+      aws:asset:path: /home/misael/Documentos/Projetos/Pesquisa/lambda
+      aws:asset:is-bundled: false
+      aws:asset:property: Code
+  ValideTokenUserVoteLambdaEventInvokeConfigBB0A4075:
+    Type: AWS::Lambda::EventInvokeConfig
+    Properties:
+      FunctionName:
+        Ref: ValideTokenUserVoteLambda5EAB3A0A
+      MaximumRetryAttempts: 0
+      Qualifier: $LATEST
+    Metadata:
+      aws:cdk:path: PesquisaStack/ValideTokenUserVoteLambda/EventInvokeConfig/Resource
+  ValideTokenUserVoteLambdaFunctionUrlAA08441F:
+    Type: AWS::Lambda::Url
+    Properties:
+      AuthType: NONE
+      TargetFunctionArn:
+        Fn::GetAtt:
+          - ValideTokenUserVoteLambda5EAB3A0A
+          - Arn
+    Metadata:
+      aws:cdk:path: PesquisaStack/ValideTokenUserVoteLambda/FunctionUrl/Resource
+  ValideTokenUserVoteLambdainvokefunctionurl9AD9FAF9:
+    Type: AWS::Lambda::Permission
+    Properties:
+      Action: lambda:InvokeFunctionUrl
+      FunctionName:
+        Fn::GetAtt:
+          - ValideTokenUserVoteLambda5EAB3A0A
+          - Arn
+      FunctionUrlAuthType: NONE
+      Principal: "*"
+    Metadata:
+      aws:cdk:path: PesquisaStack/ValideTokenUserVoteLambda/invoke-function-url
+  CreateUserAdminLambda2BAFEFCB:
+    Type: AWS::Lambda::Function
+    Properties:
+      Code:
+        S3Bucket: cdk-hnb659fds-assets-851725500352-us-east-1
+        S3Key: 3bf5bedf10366e51b68ad92198d718229da3de944c6cf00a4f22a309caebf8b1.zip
+      Environment:
+        Variables:
+          ENV: dev
+          PGHOST: ep-super-bird-a4pe5usj.us-east-1.aws.neon.tech
+          PGUSER: pesquisa_owner
+          PGPASSWORD: oyWzVYU34NbE
+          PGDATABASE: pesquisa
+          CDK_DEFAULT_ACCOUNT: "851725500352"
+          CDK_DEFAULT_REGION: us-east-1
+          SECRET_USER_VOTE: 10caf33a2468a73fe739157e956989d16d00257993e406335b6a57e7a9f8be1a0d70dcf776e4e5a6de1298c3f4373eb91662cf9d4bbba276601823887cef3252
+          SECRET_USER_ADMIN: 88efbeb658dabedfa3e434c7547d4d3672f7a278b97822228819ae603a8a3130820fdcc554ea7b86fb96017fed65723e3049c6629d27c55bd02be64b9d7e9183
+      Handler: src/functions/user-admin/create-user-admin.handler
+      MemorySize: 128
+      Role:
+        Fn::GetAtt:
+          - pesquisaRole0CBC6A3D
+          - Arn
+      Runtime: nodejs18.x
+      Timeout: 10
+    DependsOn:
+      - pesquisaRoleDefaultPolicyF389A827
+      - pesquisaRole0CBC6A3D
+    Metadata:
+      aws:cdk:path: PesquisaStack/CreateUserAdminLambda/Resource
+      aws:asset:path: /home/misael/Documentos/Projetos/Pesquisa/lambda
+      aws:asset:is-bundled: false
+      aws:asset:property: Code
+  CreateUserAdminLambdaEventInvokeConfig71B66A53:
+    Type: AWS::Lambda::EventInvokeConfig
+    Properties:
+      FunctionName:
+        Ref: CreateUserAdminLambda2BAFEFCB
+      MaximumRetryAttempts: 0
+      Qualifier: $LATEST
+    Metadata:
+      aws:cdk:path: PesquisaStack/CreateUserAdminLambda/EventInvokeConfig/Resource
+  CreateUserAdminLambdaFunctionUrlE3AF2FE5:
+    Type: AWS::Lambda::Url
+    Properties:
+      AuthType: NONE
+      TargetFunctionArn:
+        Fn::GetAtt:
+          - CreateUserAdminLambda2BAFEFCB
+          - Arn
+    Metadata:
+      aws:cdk:path: PesquisaStack/CreateUserAdminLambda/FunctionUrl/Resource
+  CreateUserAdminLambdainvokefunctionurlEB6E71DE:
+    Type: AWS::Lambda::Permission
+    Properties:
+      Action: lambda:InvokeFunctionUrl
+      FunctionName:
+        Fn::GetAtt:
+          - CreateUserAdminLambda2BAFEFCB
+          - Arn
+      FunctionUrlAuthType: NONE
+      Principal: "*"
+    Metadata:
+      aws:cdk:path: PesquisaStack/CreateUserAdminLambda/invoke-function-url
+  UpdateUserAdminLambda6B940501:
+    Type: AWS::Lambda::Function
+    Properties:
+      Code:
+        S3Bucket: cdk-hnb659fds-assets-851725500352-us-east-1
+        S3Key: 3bf5bedf10366e51b68ad92198d718229da3de944c6cf00a4f22a309caebf8b1.zip
+      Environment:
+        Variables:
+          ENV: dev
+          PGHOST: ep-super-bird-a4pe5usj.us-east-1.aws.neon.tech
+          PGUSER: pesquisa_owner
+          PGPASSWORD: oyWzVYU34NbE
+          PGDATABASE: pesquisa
+          CDK_DEFAULT_ACCOUNT: "851725500352"
+          CDK_DEFAULT_REGION: us-east-1
+          SECRET_USER_VOTE: 10caf33a2468a73fe739157e956989d16d00257993e406335b6a57e7a9f8be1a0d70dcf776e4e5a6de1298c3f4373eb91662cf9d4bbba276601823887cef3252
+          SECRET_USER_ADMIN: 88efbeb658dabedfa3e434c7547d4d3672f7a278b97822228819ae603a8a3130820fdcc554ea7b86fb96017fed65723e3049c6629d27c55bd02be64b9d7e9183
+      Handler: src/functions/user-admin/update-user-admin.handler
+      MemorySize: 128
+      Role:
+        Fn::GetAtt:
+          - pesquisaRole0CBC6A3D
+          - Arn
+      Runtime: nodejs18.x
+      Timeout: 10
+    DependsOn:
+      - pesquisaRoleDefaultPolicyF389A827
+      - pesquisaRole0CBC6A3D
+    Metadata:
+      aws:cdk:path: PesquisaStack/UpdateUserAdminLambda/Resource
+      aws:asset:path: /home/misael/Documentos/Projetos/Pesquisa/lambda
+      aws:asset:is-bundled: false
+      aws:asset:property: Code
+  UpdateUserAdminLambdaEventInvokeConfigB01C0CCE:
+    Type: AWS::Lambda::EventInvokeConfig
+    Properties:
+      FunctionName:
+        Ref: UpdateUserAdminLambda6B940501
+      MaximumRetryAttempts: 0
+      Qualifier: $LATEST
+    Metadata:
+      aws:cdk:path: PesquisaStack/UpdateUserAdminLambda/EventInvokeConfig/Resource
+  UpdateUserAdminLambdaFunctionUrlD8FAAA1B:
+    Type: AWS::Lambda::Url
+    Properties:
+      AuthType: NONE
+      TargetFunctionArn:
+        Fn::GetAtt:
+          - UpdateUserAdminLambda6B940501
+          - Arn
+    Metadata:
+      aws:cdk:path: PesquisaStack/UpdateUserAdminLambda/FunctionUrl/Resource
+  UpdateUserAdminLambdainvokefunctionurl828F2220:
+    Type: AWS::Lambda::Permission
+    Properties:
+      Action: lambda:InvokeFunctionUrl
+      FunctionName:
+        Fn::GetAtt:
+          - UpdateUserAdminLambda6B940501
+          - Arn
+      FunctionUrlAuthType: NONE
+      Principal: "*"
+    Metadata:
+      aws:cdk:path: PesquisaStack/UpdateUserAdminLambda/invoke-function-url
+  UpdatePasswordUserAdminLambdaE0111454:
+    Type: AWS::Lambda::Function
+    Properties:
+      Code:
+        S3Bucket: cdk-hnb659fds-assets-851725500352-us-east-1
+        S3Key: 3bf5bedf10366e51b68ad92198d718229da3de944c6cf00a4f22a309caebf8b1.zip
+      Environment:
+        Variables:
+          ENV: dev
+          PGHOST: ep-super-bird-a4pe5usj.us-east-1.aws.neon.tech
+          PGUSER: pesquisa_owner
+          PGPASSWORD: oyWzVYU34NbE
+          PGDATABASE: pesquisa
+          CDK_DEFAULT_ACCOUNT: "851725500352"
+          CDK_DEFAULT_REGION: us-east-1
+          SECRET_USER_VOTE: 10caf33a2468a73fe739157e956989d16d00257993e406335b6a57e7a9f8be1a0d70dcf776e4e5a6de1298c3f4373eb91662cf9d4bbba276601823887cef3252
+          SECRET_USER_ADMIN: 88efbeb658dabedfa3e434c7547d4d3672f7a278b97822228819ae603a8a3130820fdcc554ea7b86fb96017fed65723e3049c6629d27c55bd02be64b9d7e9183
+      Handler: src/functions/user-admin/update-password-user-admin.handler
+      MemorySize: 128
+      Role:
+        Fn::GetAtt:
+          - pesquisaRole0CBC6A3D
+          - Arn
+      Runtime: nodejs18.x
+      Timeout: 10
+    DependsOn:
+      - pesquisaRoleDefaultPolicyF389A827
+      - pesquisaRole0CBC6A3D
+    Metadata:
+      aws:cdk:path: PesquisaStack/UpdatePasswordUserAdminLambda/Resource
+      aws:asset:path: /home/misael/Documentos/Projetos/Pesquisa/lambda
+      aws:asset:is-bundled: false
+      aws:asset:property: Code
+  UpdatePasswordUserAdminLambdaEventInvokeConfigE38655D0:
+    Type: AWS::Lambda::EventInvokeConfig
+    Properties:
+      FunctionName:
+        Ref: UpdatePasswordUserAdminLambdaE0111454
+      MaximumRetryAttempts: 0
+      Qualifier: $LATEST
+    Metadata:
+      aws:cdk:path: PesquisaStack/UpdatePasswordUserAdminLambda/EventInvokeConfig/Resource
+  UpdatePasswordUserAdminLambdaFunctionUrl68B8A580:
+    Type: AWS::Lambda::Url
+    Properties:
+      AuthType: NONE
+      TargetFunctionArn:
+        Fn::GetAtt:
+          - UpdatePasswordUserAdminLambdaE0111454
+          - Arn
+    Metadata:
+      aws:cdk:path: PesquisaStack/UpdatePasswordUserAdminLambda/FunctionUrl/Resource
+  UpdatePasswordUserAdminLambdainvokefunctionurl94BFE6DE:
+    Type: AWS::Lambda::Permission
+    Properties:
+      Action: lambda:InvokeFunctionUrl
+      FunctionName:
+        Fn::GetAtt:
+          - UpdatePasswordUserAdminLambdaE0111454
+          - Arn
+      FunctionUrlAuthType: NONE
+      Principal: "*"
+    Metadata:
+      aws:cdk:path: PesquisaStack/UpdatePasswordUserAdminLambda/invoke-function-url
+  LoginUserAdminLambda4E1F3C88:
+    Type: AWS::Lambda::Function
+    Properties:
+      Code:
+        S3Bucket: cdk-hnb659fds-assets-851725500352-us-east-1
+        S3Key: 3bf5bedf10366e51b68ad92198d718229da3de944c6cf00a4f22a309caebf8b1.zip
+      Environment:
+        Variables:
+          ENV: dev
+          PGHOST: ep-super-bird-a4pe5usj.us-east-1.aws.neon.tech
+          PGUSER: pesquisa_owner
+          PGPASSWORD: oyWzVYU34NbE
+          PGDATABASE: pesquisa
+          CDK_DEFAULT_ACCOUNT: "851725500352"
+          CDK_DEFAULT_REGION: us-east-1
+          SECRET_USER_VOTE: 10caf33a2468a73fe739157e956989d16d00257993e406335b6a57e7a9f8be1a0d70dcf776e4e5a6de1298c3f4373eb91662cf9d4bbba276601823887cef3252
+          SECRET_USER_ADMIN: 88efbeb658dabedfa3e434c7547d4d3672f7a278b97822228819ae603a8a3130820fdcc554ea7b86fb96017fed65723e3049c6629d27c55bd02be64b9d7e9183
+      Handler: src/functions/auth/user-admin/login-user-admin.handler
+      MemorySize: 128
+      Role:
+        Fn::GetAtt:
+          - pesquisaRole0CBC6A3D
+          - Arn
+      Runtime: nodejs18.x
+      Timeout: 10
+    DependsOn:
+      - pesquisaRoleDefaultPolicyF389A827
+      - pesquisaRole0CBC6A3D
+    Metadata:
+      aws:cdk:path: PesquisaStack/LoginUserAdminLambda/Resource
+      aws:asset:path: /home/misael/Documentos/Projetos/Pesquisa/lambda
+      aws:asset:is-bundled: false
+      aws:asset:property: Code
+  LoginUserAdminLambdaEventInvokeConfig109E9E32:
+    Type: AWS::Lambda::EventInvokeConfig
+    Properties:
+      FunctionName:
+        Ref: LoginUserAdminLambda4E1F3C88
+      MaximumRetryAttempts: 0
+      Qualifier: $LATEST
+    Metadata:
+      aws:cdk:path: PesquisaStack/LoginUserAdminLambda/EventInvokeConfig/Resource
+  LoginUserAdminLambdaFunctionUrlCD3EEEBB:
+    Type: AWS::Lambda::Url
+    Properties:
+      AuthType: NONE
+      TargetFunctionArn:
+        Fn::GetAtt:
+          - LoginUserAdminLambda4E1F3C88
+          - Arn
+    Metadata:
+      aws:cdk:path: PesquisaStack/LoginUserAdminLambda/FunctionUrl/Resource
+  LoginUserAdminLambdainvokefunctionurl104B6CAD:
+    Type: AWS::Lambda::Permission
+    Properties:
+      Action: lambda:InvokeFunctionUrl
+      FunctionName:
+        Fn::GetAtt:
+          - LoginUserAdminLambda4E1F3C88
+          - Arn
+      FunctionUrlAuthType: NONE
+      Principal: "*"
+    Metadata:
+      aws:cdk:path: PesquisaStack/LoginUserAdminLambda/invoke-function-url
+  UpdateRoleUserAdminLambda37A08653:
+    Type: AWS::Lambda::Function
+    Properties:
+      Code:
+        S3Bucket: cdk-hnb659fds-assets-851725500352-us-east-1
+        S3Key: 3bf5bedf10366e51b68ad92198d718229da3de944c6cf00a4f22a309caebf8b1.zip
+      Environment:
+        Variables:
+          ENV: dev
+          PGHOST: ep-super-bird-a4pe5usj.us-east-1.aws.neon.tech
+          PGUSER: pesquisa_owner
+          PGPASSWORD: oyWzVYU34NbE
+          PGDATABASE: pesquisa
+          CDK_DEFAULT_ACCOUNT: "851725500352"
+          CDK_DEFAULT_REGION: us-east-1
+          SECRET_USER_VOTE: 10caf33a2468a73fe739157e956989d16d00257993e406335b6a57e7a9f8be1a0d70dcf776e4e5a6de1298c3f4373eb91662cf9d4bbba276601823887cef3252
+          SECRET_USER_ADMIN: 88efbeb658dabedfa3e434c7547d4d3672f7a278b97822228819ae603a8a3130820fdcc554ea7b86fb96017fed65723e3049c6629d27c55bd02be64b9d7e9183
+      Handler: src/functions/user-admin/update-role-user-admin.handler
+      MemorySize: 128
+      Role:
+        Fn::GetAtt:
+          - pesquisaRole0CBC6A3D
+          - Arn
+      Runtime: nodejs18.x
+      Timeout: 10
+    DependsOn:
+      - pesquisaRoleDefaultPolicyF389A827
+      - pesquisaRole0CBC6A3D
+    Metadata:
+      aws:cdk:path: PesquisaStack/UpdateRoleUserAdminLambda/Resource
+      aws:asset:path: /home/misael/Documentos/Projetos/Pesquisa/lambda
+      aws:asset:is-bundled: false
+      aws:asset:property: Code
+  UpdateRoleUserAdminLambdaEventInvokeConfigD8FDBFBE:
+    Type: AWS::Lambda::EventInvokeConfig
+    Properties:
+      FunctionName:
+        Ref: UpdateRoleUserAdminLambda37A08653
+      MaximumRetryAttempts: 0
+      Qualifier: $LATEST
+    Metadata:
+      aws:cdk:path: PesquisaStack/UpdateRoleUserAdminLambda/EventInvokeConfig/Resource
+  UpdateRoleUserAdminLambdaFunctionUrl2918B4D0:
+    Type: AWS::Lambda::Url
+    Properties:
+      AuthType: NONE
+      TargetFunctionArn:
+        Fn::GetAtt:
+          - UpdateRoleUserAdminLambda37A08653
+          - Arn
+    Metadata:
+      aws:cdk:path: PesquisaStack/UpdateRoleUserAdminLambda/FunctionUrl/Resource
+  UpdateRoleUserAdminLambdainvokefunctionurlF5018A6B:
+    Type: AWS::Lambda::Permission
+    Properties:
+      Action: lambda:InvokeFunctionUrl
+      FunctionName:
+        Fn::GetAtt:
+          - UpdateRoleUserAdminLambda37A08653
+          - Arn
+      FunctionUrlAuthType: NONE
+      Principal: "*"
+    Metadata:
+      aws:cdk:path: PesquisaStack/UpdateRoleUserAdminLambda/invoke-function-url
+  ValideTokenUserAdminLambdaD9DB2D26:
+    Type: AWS::Lambda::Function
+    Properties:
+      Code:
+        S3Bucket: cdk-hnb659fds-assets-851725500352-us-east-1
+        S3Key: 3bf5bedf10366e51b68ad92198d718229da3de944c6cf00a4f22a309caebf8b1.zip
+      Environment:
+        Variables:
+          ENV: dev
+          PGHOST: ep-super-bird-a4pe5usj.us-east-1.aws.neon.tech
+          PGUSER: pesquisa_owner
+          PGPASSWORD: oyWzVYU34NbE
+          PGDATABASE: pesquisa
+          CDK_DEFAULT_ACCOUNT: "851725500352"
+          CDK_DEFAULT_REGION: us-east-1
+          SECRET_USER_VOTE: 10caf33a2468a73fe739157e956989d16d00257993e406335b6a57e7a9f8be1a0d70dcf776e4e5a6de1298c3f4373eb91662cf9d4bbba276601823887cef3252
+          SECRET_USER_ADMIN: 88efbeb658dabedfa3e434c7547d4d3672f7a278b97822228819ae603a8a3130820fdcc554ea7b86fb96017fed65723e3049c6629d27c55bd02be64b9d7e9183
+      Handler: src/functions/auth/user-admin/valide-token-user-admin.handler
+      MemorySize: 128
+      Role:
+        Fn::GetAtt:
+          - pesquisaRole0CBC6A3D
+          - Arn
+      Runtime: nodejs18.x
+      Timeout: 10
+    DependsOn:
+      - pesquisaRoleDefaultPolicyF389A827
+      - pesquisaRole0CBC6A3D
+    Metadata:
+      aws:cdk:path: PesquisaStack/ValideTokenUserAdminLambda/Resource
+      aws:asset:path: /home/misael/Documentos/Projetos/Pesquisa/lambda
+      aws:asset:is-bundled: false
+      aws:asset:property: Code
+  ValideTokenUserAdminLambdaEventInvokeConfig961DF639:
+    Type: AWS::Lambda::EventInvokeConfig
+    Properties:
+      FunctionName:
+        Ref: ValideTokenUserAdminLambdaD9DB2D26
+      MaximumRetryAttempts: 0
+      Qualifier: $LATEST
+    Metadata:
+      aws:cdk:path: PesquisaStack/ValideTokenUserAdminLambda/EventInvokeConfig/Resource
+  ValideTokenUserAdminLambdaFunctionUrl01CC19BF:
+    Type: AWS::Lambda::Url
+    Properties:
+      AuthType: NONE
+      TargetFunctionArn:
+        Fn::GetAtt:
+          - ValideTokenUserAdminLambdaD9DB2D26
+          - Arn
+    Metadata:
+      aws:cdk:path: PesquisaStack/ValideTokenUserAdminLambda/FunctionUrl/Resource
+  ValideTokenUserAdminLambdainvokefunctionurlE4107E2E:
+    Type: AWS::Lambda::Permission
+    Properties:
+      Action: lambda:InvokeFunctionUrl
+      FunctionName:
+        Fn::GetAtt:
+          - ValideTokenUserAdminLambdaD9DB2D26
+          - Arn
+      FunctionUrlAuthType: NONE
+      Principal: "*"
+    Metadata:
+      aws:cdk:path: PesquisaStack/ValideTokenUserAdminLambda/invoke-function-url
+  PesquisaApiC75450C1:
+    Type: AWS::ApiGateway::RestApi
+    Properties:
+      Description: API para pesquisa de votos
+      Name: Pesquisa API
+    Metadata:
+      aws:cdk:path: PesquisaStack/PesquisaApi/Resource
+  PesquisaApiDeployment6D0CBA4F2cb8b3c7078ec921edbe299bde3c03a9:
+    Type: AWS::ApiGateway::Deployment
+    Properties:
+      Description: API para pesquisa de votos
+      RestApiId:
+        Ref: PesquisaApiC75450C1
+    DependsOn:
+      - PesquisaApiconfirmsmsuservotePOST1136538D
+      - PesquisaApiconfirmsmsuservote9038531F
+      - PesquisaApicreateuseradminPOST9D539ACF
+      - PesquisaApicreateuseradmin302CBE2E
+      - PesquisaApiloginuseradminPOSTF64FD785
+      - PesquisaApiloginuseradminBFFA42EE
+      - PesquisaApiloginuservotePOSTC271780E
+      - PesquisaApiloginuservote3839B1A2
+      - PesquisaApiupdatepassworduseradminPOST26DED359
+      - PesquisaApiupdatepassworduseradmin2F361C56
+      - PesquisaApiupdateroleuseradminPOSTC28AADF7
+      - PesquisaApiupdateroleuseradmin9B93BF1A
+      - PesquisaApiupdateuseradminPOST238860F3
+      - PesquisaApiupdateuseradminA89FD7E2
+      - PesquisaApivalidetokenuseradminPOST009EECE1
+      - PesquisaApivalidetokenuseradmin5D8A6817
+      - PesquisaApivalidetokenuservotePOST9E49402C
+      - PesquisaApivalidetokenuservote3C320832
+    Metadata:
+      aws:cdk:path: PesquisaStack/PesquisaApi/Deployment/Resource
+  PesquisaApiDeploymentStageprod0D8317FB:
+    Type: AWS::ApiGateway::Stage
+    Properties:
+      DeploymentId:
+        Ref: PesquisaApiDeployment6D0CBA4F2cb8b3c7078ec921edbe299bde3c03a9
+      RestApiId:
+        Ref: PesquisaApiC75450C1
+      StageName: prod
+    Metadata:
+      aws:cdk:path: PesquisaStack/PesquisaApi/DeploymentStage.prod/Resource
+  PesquisaApiloginuservote3839B1A2:
+    Type: AWS::ApiGateway::Resource
+    Properties:
+      ParentId:
+        Fn::GetAtt:
+          - PesquisaApiC75450C1
+          - RootResourceId
+      PathPart: login-user-vote
+      RestApiId:
+        Ref: PesquisaApiC75450C1
+    Metadata:
+      aws:cdk:path: PesquisaStack/PesquisaApi/Default/login-user-vote/Resource
+  PesquisaApiloginuservotePOSTApiPermissionPesquisaStackPesquisaApi61B2E22CPOSTloginuservote0BDCBDCE:
+    Type: AWS::Lambda::Permission
+    Properties:
+      Action: lambda:InvokeFunction
+      FunctionName:
+        Fn::GetAtt:
+          - loginUserVoteLambda06B39DFA
+          - Arn
+      Principal: apigateway.amazonaws.com
+      SourceArn:
+        Fn::Join:
+          - ""
+          - - "arn:aws:execute-api:us-east-1:851725500352:"
+            - Ref: PesquisaApiC75450C1
+            - /
+            - Ref: PesquisaApiDeploymentStageprod0D8317FB
+            - /POST/login-user-vote
+    Metadata:
+      aws:cdk:path: PesquisaStack/PesquisaApi/Default/login-user-vote/POST/ApiPermission.PesquisaStackPesquisaApi61B2E22C.POST..login-user-vote
+  PesquisaApiloginuservotePOSTApiPermissionTestPesquisaStackPesquisaApi61B2E22CPOSTloginuservote21BEBDC8:
+    Type: AWS::Lambda::Permission
+    Properties:
+      Action: lambda:InvokeFunction
+      FunctionName:
+        Fn::GetAtt:
+          - loginUserVoteLambda06B39DFA
+          - Arn
+      Principal: apigateway.amazonaws.com
+      SourceArn:
+        Fn::Join:
+          - ""
+          - - "arn:aws:execute-api:us-east-1:851725500352:"
+            - Ref: PesquisaApiC75450C1
+            - /test-invoke-stage/POST/login-user-vote
+    Metadata:
+      aws:cdk:path: PesquisaStack/PesquisaApi/Default/login-user-vote/POST/ApiPermission.Test.PesquisaStackPesquisaApi61B2E22C.POST..login-user-vote
+  PesquisaApiloginuservotePOSTC271780E:
+    Type: AWS::ApiGateway::Method
+    Properties:
+      AuthorizationType: NONE
+      HttpMethod: POST
+      Integration:
+        IntegrationHttpMethod: POST
+        Type: AWS_PROXY
+        Uri:
+          Fn::Join:
+            - ""
+            - - arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/
+              - Fn::GetAtt:
+                  - loginUserVoteLambda06B39DFA
+                  - Arn
+              - /invocations
+      ResourceId:
+        Ref: PesquisaApiloginuservote3839B1A2
+      RestApiId:
+        Ref: PesquisaApiC75450C1
+    Metadata:
+      aws:cdk:path: PesquisaStack/PesquisaApi/Default/login-user-vote/POST/Resource
+  PesquisaApiconfirmsmsuservote9038531F:
+    Type: AWS::ApiGateway::Resource
+    Properties:
+      ParentId:
+        Fn::GetAtt:
+          - PesquisaApiC75450C1
+          - RootResourceId
+      PathPart: confirm-sms-user-vote
+      RestApiId:
+        Ref: PesquisaApiC75450C1
+    Metadata:
+      aws:cdk:path: PesquisaStack/PesquisaApi/Default/confirm-sms-user-vote/Resource
+  PesquisaApiconfirmsmsuservotePOSTApiPermissionPesquisaStackPesquisaApi61B2E22CPOSTconfirmsmsuservoteEC63532B:
+    Type: AWS::Lambda::Permission
+    Properties:
+      Action: lambda:InvokeFunction
+      FunctionName:
+        Fn::GetAtt:
+          - ConfirmSmsserVoteLambdaD40457B5
+          - Arn
+      Principal: apigateway.amazonaws.com
+      SourceArn:
+        Fn::Join:
+          - ""
+          - - "arn:aws:execute-api:us-east-1:851725500352:"
+            - Ref: PesquisaApiC75450C1
+            - /
+            - Ref: PesquisaApiDeploymentStageprod0D8317FB
+            - /POST/confirm-sms-user-vote
+    Metadata:
+      aws:cdk:path: PesquisaStack/PesquisaApi/Default/confirm-sms-user-vote/POST/ApiPermission.PesquisaStackPesquisaApi61B2E22C.POST..confirm-sms-user-vote
+  PesquisaApiconfirmsmsuservotePOSTApiPermissionTestPesquisaStackPesquisaApi61B2E22CPOSTconfirmsmsuservoteCEEC7C79:
+    Type: AWS::Lambda::Permission
+    Properties:
+      Action: lambda:InvokeFunction
+      FunctionName:
+        Fn::GetAtt:
+          - ConfirmSmsserVoteLambdaD40457B5
+          - Arn
+      Principal: apigateway.amazonaws.com
+      SourceArn:
+        Fn::Join:
+          - ""
+          - - "arn:aws:execute-api:us-east-1:851725500352:"
+            - Ref: PesquisaApiC75450C1
+            - /test-invoke-stage/POST/confirm-sms-user-vote
+    Metadata:
+      aws:cdk:path: PesquisaStack/PesquisaApi/Default/confirm-sms-user-vote/POST/ApiPermission.Test.PesquisaStackPesquisaApi61B2E22C.POST..confirm-sms-user-vote
+  PesquisaApiconfirmsmsuservotePOST1136538D:
+    Type: AWS::ApiGateway::Method
+    Properties:
+      AuthorizationType: NONE
+      HttpMethod: POST
+      Integration:
+        IntegrationHttpMethod: POST
+        Type: AWS_PROXY
+        Uri:
+          Fn::Join:
+            - ""
+            - - arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/
+              - Fn::GetAtt:
+                  - ConfirmSmsserVoteLambdaD40457B5
+                  - Arn
+              - /invocations
+      ResourceId:
+        Ref: PesquisaApiconfirmsmsuservote9038531F
+      RestApiId:
+        Ref: PesquisaApiC75450C1
+    Metadata:
+      aws:cdk:path: PesquisaStack/PesquisaApi/Default/confirm-sms-user-vote/POST/Resource
+  PesquisaApivalidetokenuservote3C320832:
+    Type: AWS::ApiGateway::Resource
+    Properties:
+      ParentId:
+        Fn::GetAtt:
+          - PesquisaApiC75450C1
+          - RootResourceId
+      PathPart: valide-token-user-vote
+      RestApiId:
+        Ref: PesquisaApiC75450C1
+    Metadata:
+      aws:cdk:path: PesquisaStack/PesquisaApi/Default/valide-token-user-vote/Resource
+  PesquisaApivalidetokenuservotePOSTApiPermissionPesquisaStackPesquisaApi61B2E22CPOSTvalidetokenuservoteB4380E58:
+    Type: AWS::Lambda::Permission
+    Properties:
+      Action: lambda:InvokeFunction
+      FunctionName:
+        Fn::GetAtt:
+          - ValideTokenUserVoteLambda5EAB3A0A
+          - Arn
+      Principal: apigateway.amazonaws.com
+      SourceArn:
+        Fn::Join:
+          - ""
+          - - "arn:aws:execute-api:us-east-1:851725500352:"
+            - Ref: PesquisaApiC75450C1
+            - /
+            - Ref: PesquisaApiDeploymentStageprod0D8317FB
+            - /POST/valide-token-user-vote
+    Metadata:
+      aws:cdk:path: PesquisaStack/PesquisaApi/Default/valide-token-user-vote/POST/ApiPermission.PesquisaStackPesquisaApi61B2E22C.POST..valide-token-user-vote
+  PesquisaApivalidetokenuservotePOSTApiPermissionTestPesquisaStackPesquisaApi61B2E22CPOSTvalidetokenuservoteF3CA8D91:
+    Type: AWS::Lambda::Permission
+    Properties:
+      Action: lambda:InvokeFunction
+      FunctionName:
+        Fn::GetAtt:
+          - ValideTokenUserVoteLambda5EAB3A0A
+          - Arn
+      Principal: apigateway.amazonaws.com
+      SourceArn:
+        Fn::Join:
+          - ""
+          - - "arn:aws:execute-api:us-east-1:851725500352:"
+            - Ref: PesquisaApiC75450C1
+            - /test-invoke-stage/POST/valide-token-user-vote
+    Metadata:
+      aws:cdk:path: PesquisaStack/PesquisaApi/Default/valide-token-user-vote/POST/ApiPermission.Test.PesquisaStackPesquisaApi61B2E22C.POST..valide-token-user-vote
+  PesquisaApivalidetokenuservotePOST9E49402C:
+    Type: AWS::ApiGateway::Method
+    Properties:
+      AuthorizationType: NONE
+      HttpMethod: POST
+      Integration:
+        IntegrationHttpMethod: POST
+        Type: AWS_PROXY
+        Uri:
+          Fn::Join:
+            - ""
+            - - arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/
+              - Fn::GetAtt:
+                  - ValideTokenUserVoteLambda5EAB3A0A
+                  - Arn
+              - /invocations
+      ResourceId:
+        Ref: PesquisaApivalidetokenuservote3C320832
+      RestApiId:
+        Ref: PesquisaApiC75450C1
+    Metadata:
+      aws:cdk:path: PesquisaStack/PesquisaApi/Default/valide-token-user-vote/POST/Resource
+  PesquisaApicreateuseradmin302CBE2E:
+    Type: AWS::ApiGateway::Resource
+    Properties:
+      ParentId:
+        Fn::GetAtt:
+          - PesquisaApiC75450C1
+          - RootResourceId
+      PathPart: create-user-admin
+      RestApiId:
+        Ref: PesquisaApiC75450C1
+    Metadata:
+      aws:cdk:path: PesquisaStack/PesquisaApi/Default/create-user-admin/Resource
+  PesquisaApicreateuseradminPOSTApiPermissionPesquisaStackPesquisaApi61B2E22CPOSTcreateuseradminFE3FF437:
+    Type: AWS::Lambda::Permission
+    Properties:
+      Action: lambda:InvokeFunction
+      FunctionName:
+        Fn::GetAtt:
+          - CreateUserAdminLambda2BAFEFCB
+          - Arn
+      Principal: apigateway.amazonaws.com
+      SourceArn:
+        Fn::Join:
+          - ""
+          - - "arn:aws:execute-api:us-east-1:851725500352:"
+            - Ref: PesquisaApiC75450C1
+            - /
+            - Ref: PesquisaApiDeploymentStageprod0D8317FB
+            - /POST/create-user-admin
+    Metadata:
+      aws:cdk:path: PesquisaStack/PesquisaApi/Default/create-user-admin/POST/ApiPermission.PesquisaStackPesquisaApi61B2E22C.POST..create-user-admin
+  PesquisaApicreateuseradminPOSTApiPermissionTestPesquisaStackPesquisaApi61B2E22CPOSTcreateuseradminDD76C484:
+    Type: AWS::Lambda::Permission
+    Properties:
+      Action: lambda:InvokeFunction
+      FunctionName:
+        Fn::GetAtt:
+          - CreateUserAdminLambda2BAFEFCB
+          - Arn
+      Principal: apigateway.amazonaws.com
+      SourceArn:
+        Fn::Join:
+          - ""
+          - - "arn:aws:execute-api:us-east-1:851725500352:"
+            - Ref: PesquisaApiC75450C1
+            - /test-invoke-stage/POST/create-user-admin
+    Metadata:
+      aws:cdk:path: PesquisaStack/PesquisaApi/Default/create-user-admin/POST/ApiPermission.Test.PesquisaStackPesquisaApi61B2E22C.POST..create-user-admin
+  PesquisaApicreateuseradminPOST9D539ACF:
+    Type: AWS::ApiGateway::Method
+    Properties:
+      AuthorizationType: NONE
+      HttpMethod: POST
+      Integration:
+        IntegrationHttpMethod: POST
+        Type: AWS_PROXY
+        Uri:
+          Fn::Join:
+            - ""
+            - - arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/
+              - Fn::GetAtt:
+                  - CreateUserAdminLambda2BAFEFCB
+                  - Arn
+              - /invocations
+      ResourceId:
+        Ref: PesquisaApicreateuseradmin302CBE2E
+      RestApiId:
+        Ref: PesquisaApiC75450C1
+    Metadata:
+      aws:cdk:path: PesquisaStack/PesquisaApi/Default/create-user-admin/POST/Resource
+  PesquisaApiupdateuseradminA89FD7E2:
+    Type: AWS::ApiGateway::Resource
+    Properties:
+      ParentId:
+        Fn::GetAtt:
+          - PesquisaApiC75450C1
+          - RootResourceId
+      PathPart: update-user-admin
+      RestApiId:
+        Ref: PesquisaApiC75450C1
+    Metadata:
+      aws:cdk:path: PesquisaStack/PesquisaApi/Default/update-user-admin/Resource
+  PesquisaApiupdateuseradminPOSTApiPermissionPesquisaStackPesquisaApi61B2E22CPOSTupdateuseradmin4F5CF5A2:
+    Type: AWS::Lambda::Permission
+    Properties:
+      Action: lambda:InvokeFunction
+      FunctionName:
+        Fn::GetAtt:
+          - UpdateUserAdminLambda6B940501
+          - Arn
+      Principal: apigateway.amazonaws.com
+      SourceArn:
+        Fn::Join:
+          - ""
+          - - "arn:aws:execute-api:us-east-1:851725500352:"
+            - Ref: PesquisaApiC75450C1
+            - /
+            - Ref: PesquisaApiDeploymentStageprod0D8317FB
+            - /POST/update-user-admin
+    Metadata:
+      aws:cdk:path: PesquisaStack/PesquisaApi/Default/update-user-admin/POST/ApiPermission.PesquisaStackPesquisaApi61B2E22C.POST..update-user-admin
+  PesquisaApiupdateuseradminPOSTApiPermissionTestPesquisaStackPesquisaApi61B2E22CPOSTupdateuseradmin9C1C85E0:
+    Type: AWS::Lambda::Permission
+    Properties:
+      Action: lambda:InvokeFunction
+      FunctionName:
+        Fn::GetAtt:
+          - UpdateUserAdminLambda6B940501
+          - Arn
+      Principal: apigateway.amazonaws.com
+      SourceArn:
+        Fn::Join:
+          - ""
+          - - "arn:aws:execute-api:us-east-1:851725500352:"
+            - Ref: PesquisaApiC75450C1
+            - /test-invoke-stage/POST/update-user-admin
+    Metadata:
+      aws:cdk:path: PesquisaStack/PesquisaApi/Default/update-user-admin/POST/ApiPermission.Test.PesquisaStackPesquisaApi61B2E22C.POST..update-user-admin
+  PesquisaApiupdateuseradminPOST238860F3:
+    Type: AWS::ApiGateway::Method
+    Properties:
+      AuthorizationType: NONE
+      HttpMethod: POST
+      Integration:
+        IntegrationHttpMethod: POST
+        Type: AWS_PROXY
+        Uri:
+          Fn::Join:
+            - ""
+            - - arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/
+              - Fn::GetAtt:
+                  - UpdateUserAdminLambda6B940501
+                  - Arn
+              - /invocations
+      ResourceId:
+        Ref: PesquisaApiupdateuseradminA89FD7E2
+      RestApiId:
+        Ref: PesquisaApiC75450C1
+    Metadata:
+      aws:cdk:path: PesquisaStack/PesquisaApi/Default/update-user-admin/POST/Resource
+  PesquisaApiupdatepassworduseradmin2F361C56:
+    Type: AWS::ApiGateway::Resource
+    Properties:
+      ParentId:
+        Fn::GetAtt:
+          - PesquisaApiC75450C1
+          - RootResourceId
+      PathPart: update-password-user-admin
+      RestApiId:
+        Ref: PesquisaApiC75450C1
+    Metadata:
+      aws:cdk:path: PesquisaStack/PesquisaApi/Default/update-password-user-admin/Resource
+  PesquisaApiupdatepassworduseradminPOSTApiPermissionPesquisaStackPesquisaApi61B2E22CPOSTupdatepassworduseradminF945489F:
+    Type: AWS::Lambda::Permission
+    Properties:
+      Action: lambda:InvokeFunction
+      FunctionName:
+        Fn::GetAtt:
+          - UpdatePasswordUserAdminLambdaE0111454
+          - Arn
+      Principal: apigateway.amazonaws.com
+      SourceArn:
+        Fn::Join:
+          - ""
+          - - "arn:aws:execute-api:us-east-1:851725500352:"
+            - Ref: PesquisaApiC75450C1
+            - /
+            - Ref: PesquisaApiDeploymentStageprod0D8317FB
+            - /POST/update-password-user-admin
+    Metadata:
+      aws:cdk:path: PesquisaStack/PesquisaApi/Default/update-password-user-admin/POST/ApiPermission.PesquisaStackPesquisaApi61B2E22C.POST..update-password-user-admin
+  PesquisaApiupdatepassworduseradminPOSTApiPermissionTestPesquisaStackPesquisaApi61B2E22CPOSTupdatepassworduseradmin9A85C7F3:
+    Type: AWS::Lambda::Permission
+    Properties:
+      Action: lambda:InvokeFunction
+      FunctionName:
+        Fn::GetAtt:
+          - UpdatePasswordUserAdminLambdaE0111454
+          - Arn
+      Principal: apigateway.amazonaws.com
+      SourceArn:
+        Fn::Join:
+          - ""
+          - - "arn:aws:execute-api:us-east-1:851725500352:"
+            - Ref: PesquisaApiC75450C1
+            - /test-invoke-stage/POST/update-password-user-admin
+    Metadata:
+      aws:cdk:path: PesquisaStack/PesquisaApi/Default/update-password-user-admin/POST/ApiPermission.Test.PesquisaStackPesquisaApi61B2E22C.POST..update-password-user-admin
+  PesquisaApiupdatepassworduseradminPOST26DED359:
+    Type: AWS::ApiGateway::Method
+    Properties:
+      AuthorizationType: NONE
+      HttpMethod: POST
+      Integration:
+        IntegrationHttpMethod: POST
+        Type: AWS_PROXY
+        Uri:
+          Fn::Join:
+            - ""
+            - - arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/
+              - Fn::GetAtt:
+                  - UpdatePasswordUserAdminLambdaE0111454
+                  - Arn
+              - /invocations
+      ResourceId:
+        Ref: PesquisaApiupdatepassworduseradmin2F361C56
+      RestApiId:
+        Ref: PesquisaApiC75450C1
+    Metadata:
+      aws:cdk:path: PesquisaStack/PesquisaApi/Default/update-password-user-admin/POST/Resource
+  PesquisaApiloginuseradminBFFA42EE:
+    Type: AWS::ApiGateway::Resource
+    Properties:
+      ParentId:
+        Fn::GetAtt:
+          - PesquisaApiC75450C1
+          - RootResourceId
+      PathPart: login-user-admin
+      RestApiId:
+        Ref: PesquisaApiC75450C1
+    Metadata:
+      aws:cdk:path: PesquisaStack/PesquisaApi/Default/login-user-admin/Resource
+  PesquisaApiloginuseradminPOSTApiPermissionPesquisaStackPesquisaApi61B2E22CPOSTloginuseradmin83E860BD:
+    Type: AWS::Lambda::Permission
+    Properties:
+      Action: lambda:InvokeFunction
+      FunctionName:
+        Fn::GetAtt:
+          - LoginUserAdminLambda4E1F3C88
+          - Arn
+      Principal: apigateway.amazonaws.com
+      SourceArn:
+        Fn::Join:
+          - ""
+          - - "arn:aws:execute-api:us-east-1:851725500352:"
+            - Ref: PesquisaApiC75450C1
+            - /
+            - Ref: PesquisaApiDeploymentStageprod0D8317FB
+            - /POST/login-user-admin
+    Metadata:
+      aws:cdk:path: PesquisaStack/PesquisaApi/Default/login-user-admin/POST/ApiPermission.PesquisaStackPesquisaApi61B2E22C.POST..login-user-admin
+  PesquisaApiloginuseradminPOSTApiPermissionTestPesquisaStackPesquisaApi61B2E22CPOSTloginuseradmin03C4C326:
+    Type: AWS::Lambda::Permission
+    Properties:
+      Action: lambda:InvokeFunction
+      FunctionName:
+        Fn::GetAtt:
+          - LoginUserAdminLambda4E1F3C88
+          - Arn
+      Principal: apigateway.amazonaws.com
+      SourceArn:
+        Fn::Join:
+          - ""
+          - - "arn:aws:execute-api:us-east-1:851725500352:"
+            - Ref: PesquisaApiC75450C1
+            - /test-invoke-stage/POST/login-user-admin
+    Metadata:
+      aws:cdk:path: PesquisaStack/PesquisaApi/Default/login-user-admin/POST/ApiPermission.Test.PesquisaStackPesquisaApi61B2E22C.POST..login-user-admin
+  PesquisaApiloginuseradminPOSTF64FD785:
+    Type: AWS::ApiGateway::Method
+    Properties:
+      AuthorizationType: NONE
+      HttpMethod: POST
+      Integration:
+        IntegrationHttpMethod: POST
+        Type: AWS_PROXY
+        Uri:
+          Fn::Join:
+            - ""
+            - - arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/
+              - Fn::GetAtt:
+                  - LoginUserAdminLambda4E1F3C88
+                  - Arn
+              - /invocations
+      ResourceId:
+        Ref: PesquisaApiloginuseradminBFFA42EE
+      RestApiId:
+        Ref: PesquisaApiC75450C1
+    Metadata:
+      aws:cdk:path: PesquisaStack/PesquisaApi/Default/login-user-admin/POST/Resource
+  PesquisaApiupdateroleuseradmin9B93BF1A:
+    Type: AWS::ApiGateway::Resource
+    Properties:
+      ParentId:
+        Fn::GetAtt:
+          - PesquisaApiC75450C1
+          - RootResourceId
+      PathPart: update-role-user-admin
+      RestApiId:
+        Ref: PesquisaApiC75450C1
+    Metadata:
+      aws:cdk:path: PesquisaStack/PesquisaApi/Default/update-role-user-admin/Resource
+  PesquisaApiupdateroleuseradminPOSTApiPermissionPesquisaStackPesquisaApi61B2E22CPOSTupdateroleuseradmin37C0B2CF:
+    Type: AWS::Lambda::Permission
+    Properties:
+      Action: lambda:InvokeFunction
+      FunctionName:
+        Fn::GetAtt:
+          - UpdateRoleUserAdminLambda37A08653
+          - Arn
+      Principal: apigateway.amazonaws.com
+      SourceArn:
+        Fn::Join:
+          - ""
+          - - "arn:aws:execute-api:us-east-1:851725500352:"
+            - Ref: PesquisaApiC75450C1
+            - /
+            - Ref: PesquisaApiDeploymentStageprod0D8317FB
+            - /POST/update-role-user-admin
+    Metadata:
+      aws:cdk:path: PesquisaStack/PesquisaApi/Default/update-role-user-admin/POST/ApiPermission.PesquisaStackPesquisaApi61B2E22C.POST..update-role-user-admin
+  PesquisaApiupdateroleuseradminPOSTApiPermissionTestPesquisaStackPesquisaApi61B2E22CPOSTupdateroleuseradminDC76E76A:
+    Type: AWS::Lambda::Permission
+    Properties:
+      Action: lambda:InvokeFunction
+      FunctionName:
+        Fn::GetAtt:
+          - UpdateRoleUserAdminLambda37A08653
+          - Arn
+      Principal: apigateway.amazonaws.com
+      SourceArn:
+        Fn::Join:
+          - ""
+          - - "arn:aws:execute-api:us-east-1:851725500352:"
+            - Ref: PesquisaApiC75450C1
+            - /test-invoke-stage/POST/update-role-user-admin
+    Metadata:
+      aws:cdk:path: PesquisaStack/PesquisaApi/Default/update-role-user-admin/POST/ApiPermission.Test.PesquisaStackPesquisaApi61B2E22C.POST..update-role-user-admin
+  PesquisaApiupdateroleuseradminPOSTC28AADF7:
+    Type: AWS::ApiGateway::Method
+    Properties:
+      AuthorizationType: NONE
+      HttpMethod: POST
+      Integration:
+        IntegrationHttpMethod: POST
+        Type: AWS_PROXY
+        Uri:
+          Fn::Join:
+            - ""
+            - - arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/
+              - Fn::GetAtt:
+                  - UpdateRoleUserAdminLambda37A08653
+                  - Arn
+              - /invocations
+      ResourceId:
+        Ref: PesquisaApiupdateroleuseradmin9B93BF1A
+      RestApiId:
+        Ref: PesquisaApiC75450C1
+    Metadata:
+      aws:cdk:path: PesquisaStack/PesquisaApi/Default/update-role-user-admin/POST/Resource
+  PesquisaApivalidetokenuseradmin5D8A6817:
+    Type: AWS::ApiGateway::Resource
+    Properties:
+      ParentId:
+        Fn::GetAtt:
+          - PesquisaApiC75450C1
+          - RootResourceId
+      PathPart: valide-token-user-admin
+      RestApiId:
+        Ref: PesquisaApiC75450C1
+    Metadata:
+      aws:cdk:path: PesquisaStack/PesquisaApi/Default/valide-token-user-admin/Resource
+  PesquisaApivalidetokenuseradminPOSTApiPermissionPesquisaStackPesquisaApi61B2E22CPOSTvalidetokenuseradminFE7F3586:
+    Type: AWS::Lambda::Permission
+    Properties:
+      Action: lambda:InvokeFunction
+      FunctionName:
+        Fn::GetAtt:
+          - ValideTokenUserAdminLambdaD9DB2D26
+          - Arn
+      Principal: apigateway.amazonaws.com
+      SourceArn:
+        Fn::Join:
+          - ""
+          - - "arn:aws:execute-api:us-east-1:851725500352:"
+            - Ref: PesquisaApiC75450C1
+            - /
+            - Ref: PesquisaApiDeploymentStageprod0D8317FB
+            - /POST/valide-token-user-admin
+    Metadata:
+      aws:cdk:path: PesquisaStack/PesquisaApi/Default/valide-token-user-admin/POST/ApiPermission.PesquisaStackPesquisaApi61B2E22C.POST..valide-token-user-admin
+  PesquisaApivalidetokenuseradminPOSTApiPermissionTestPesquisaStackPesquisaApi61B2E22CPOSTvalidetokenuseradmin3827E424:
+    Type: AWS::Lambda::Permission
+    Properties:
+      Action: lambda:InvokeFunction
+      FunctionName:
+        Fn::GetAtt:
+          - ValideTokenUserAdminLambdaD9DB2D26
+          - Arn
+      Principal: apigateway.amazonaws.com
+      SourceArn:
+        Fn::Join:
+          - ""
+          - - "arn:aws:execute-api:us-east-1:851725500352:"
+            - Ref: PesquisaApiC75450C1
+            - /test-invoke-stage/POST/valide-token-user-admin
+    Metadata:
+      aws:cdk:path: PesquisaStack/PesquisaApi/Default/valide-token-user-admin/POST/ApiPermission.Test.PesquisaStackPesquisaApi61B2E22C.POST..valide-token-user-admin
+  PesquisaApivalidetokenuseradminPOST009EECE1:
+    Type: AWS::ApiGateway::Method
+    Properties:
+      AuthorizationType: NONE
+      HttpMethod: POST
+      Integration:
+        IntegrationHttpMethod: POST
+        Type: AWS_PROXY
+        Uri:
+          Fn::Join:
+            - ""
+            - - arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/
+              - Fn::GetAtt:
+                  - ValideTokenUserAdminLambdaD9DB2D26
+                  - Arn
+              - /invocations
+      ResourceId:
+        Ref: PesquisaApivalidetokenuseradmin5D8A6817
+      RestApiId:
+        Ref: PesquisaApiC75450C1
+    Metadata:
+      aws:cdk:path: PesquisaStack/PesquisaApi/Default/valide-token-user-admin/POST/Resource
   TopicPesquisa56C05A00:
     Type: AWS::SNS::Topic
     Properties:
@@ -209,9 +1331,21 @@ Resources:
   CDKMetadata:
     Type: AWS::CDK::Metadata
     Properties:
-      Analytics: v2:deflate64:H4sIAAAAAAAA/22OwWrDMBBEvyV3eRsnLT03oYXegt2cgyxvwsbyKmglhyL070UOLhR6mtl5zDIbqF+eoV7pu1SmHypLHaQ2aDMofZdTIj1CapxFtT/zrAdnyXyX8+Gysnrseg3pI7IJ5LiwX/8+IYdPntyAe8dnuhT6b3hAP5JIKS3to7eFHL3NSrYnLYJB4K2Iki3sohkw7LSgEhZIbezEeLotI/7cX+5GpqSzyVk1KC56g2r+1wZ9IZ6HLCArdj3CVZ6mzRrqV1ivrkJU+ciBRoTmoT/pAWqnQwEAAA==
+      Analytics: v2:deflate64:H4sIAAAAAAAA/22Q207DMAyGn2X3mdkBxPUOIHGBmFp2PWWpN7ymSVU7m6aq746SrjAkrvz9vw+yPYPp0yNMR/rCY1OUY0t7aHPRplT6wruWdAVt5i2q1cGluPGWzDXKnjpldbUvNLSvwRkh72Luh1/O6OTNnX2JK+8OdIzZf80NNhUxx6ahe9vYmNk2tlM832lmFIZFDIrnsAymRFlqRsWOoc3Dnk1D9bDEH/3pazLRTdApXdNRC170FdoMWRY1pRtvuMba+muFTqJ7p3LRx/SNHjJkHxqDaYtB3Ab1/I7y5Yto9dR1v3XplDiIXPrBR5A6yH17p5wvEE78cJ5NYPoMk9GJicZNcEIVQtbHb9t9GqHIAQAA
     Metadata:
       aws:cdk:path: PesquisaStack/CDKMetadata/Default
+Outputs:
+  PesquisaApiEndpoint98C23F3F:
+    Value:
+      Fn::Join:
+        - ""
+        - - https://
+          - Ref: PesquisaApiC75450C1
+          - .execute-api.us-east-1.
+          - Ref: AWS::URLSuffix
+          - /
+          - Ref: PesquisaApiDeploymentStageprod0D8317FB
+          - /
 Parameters:
   BootstrapVersion:
     Type: AWS::SSM::Parameter::Value<String>

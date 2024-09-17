@@ -1,21 +1,23 @@
-import { ConfirmedPhone } from '../../types/login_user_vote';
-import { UserVote } from '../../types/user-vote';
+import { ConfirmedPhone } from '../../../types/login-user-vote';
+import { UserVote } from '../../../types/user-vote';
+import { buildUpdateQuery } from '../../../util/query-builder';
+import { queryCuston } from '../../queryDB/custom-query';
 import {
   createConfirmedLogin,
   deleteCodeConfirmed,
   getConfirmationUserVote
-} from '../queryDB/login_user_vote';
+} from '../../queryDB/login_user_vote';
 import {
   createUserVote,
   getUserVoteFromCPF,
   getUserVoteFromPhone,
   updateUserVotePhoneConfirmed
-} from '../queryDB/user-vote';
+} from '../../queryDB/user-vote';
 import { SNSClient, PublishCommand } from '@aws-sdk/client-sns';
 import * as JWT from 'jsonwebtoken';
 
 const snsClient = new SNSClient();
-const SECRET_UER_VOTE = process.env.SECRET_UER_VOTE;
+const SECRET_USER_VOTE = process.env.SECRET_USER_VOTE;
 
 export async function createUserAndSendSMS(user: UserVote) {
   try {
@@ -40,14 +42,36 @@ async function checksUserExistsAndDataIsTrue(user: UserVote) {
   try {
     const getFromCPF = await getUserVoteFromCPF(user.cpf);
     const getFromPhone = await getUserVoteFromPhone(user.phone);
-    await Promise.all([getFromCPF, getFromPhone]);
-    if (getFromCPF && getFromCPF.phone !== user.phone) {
-      throw new Error('CPF informado já cadastrado');
+
+    if (getFromCPF && getFromCPF.confirmed_vote) {
+      throw new Error('CPF informado já confirmou voto');
     }
-    if (getFromPhone && getFromPhone.cpf !== user.cpf) {
-      throw new Error('CPF informado já cadastrado');
+    if (getFromPhone && getFromPhone.confirmed_vote) {
+      throw new Error('Telefone informado já confirmou voto');
     }
-    if (getFromCPF || getFromPhone) return getFromPhone;
+
+    if (
+      getFromCPF &&
+      getFromCPF.phone !== user.phone &&
+      getFromCPF.confirmed_phone
+    ) {
+      throw new Error('CPF informado já está em uso');
+    }
+    if (
+      getFromPhone &&
+      getFromPhone.cpf !== user.cpf &&
+      getFromPhone.confirmed_phone
+    ) {
+      throw new Error('Telefone informado já está em uso');
+    }
+    if (getFromCPF) {
+      user.id = getFromCPF.id;
+      return await updateUser(user);
+    }
+    if (getFromPhone) {
+      user.id = getFromPhone.id;
+      return await updateUser(user);
+    }
     return false;
   } catch (error: any) {
     throw new Error(error.message);
@@ -107,7 +131,6 @@ async function valideCode(code: string, phone: string) {
   }
   const date = new Date();
   const dateExpiration = new Date(getConfirmed.expiration_date);
-  console.log(dateExpiration);
   if (dateExpiration < date) {
     throw new Error('Código expirado' + dateExpiration);
   }
@@ -115,9 +138,14 @@ async function valideCode(code: string, phone: string) {
 }
 
 function createToken(phone: string) {
-  console.log(SECRET_UER_VOTE);
-  const token = JWT.sign({ phone }, SECRET_UER_VOTE as string, {
+  const token = JWT.sign({ phone }, SECRET_USER_VOTE as string, {
     expiresIn: '24h'
   });
   return token;
+}
+
+async function updateUser(user: UserVote) {
+  const updateUser = buildUpdateQuery('users_vote', user);
+  const update = await queryCuston(updateUser.text, updateUser.values);
+  return update;
 }

@@ -1,5 +1,5 @@
 import pool from '../../../config/db/config';
-import { ConfirmedPhone } from '../../types/login-user-vote';
+import { ConfirmedPhone } from '../../types/login_user_vote';
 
 export async function createConfirmedLogin(confirmed: ConfirmedPhone) {
   const client = await pool.connect();

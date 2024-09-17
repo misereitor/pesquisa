@@ -9,6 +9,6 @@ export const environment = {
   PGDATABASE: String(process.env.PGDATABASE),
   CDK_DEFAULT_ACCOUNT: String(process.env.CDK_DEFAULT_ACCOUNT),
   CDK_DEFAULT_REGION: String(process.env.CDK_DEFAULT_REGION),
-  SECRET_USER_VOTE: String(process.env.SECRET_USER_VOTE),
+  SECRET_USER_VOTE: String(process.env.SECRET_USERVOTE),
   SECRET_USER_ADMIN: String(process.env.SECRET_USER_ADMIN)
 };
