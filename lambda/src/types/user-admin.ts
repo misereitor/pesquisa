@@ -5,6 +5,7 @@ export interface UserAdmin {
   password: string;
   email: string;
   role: string;
+  active: boolean;
   last_ip: string;
   date_create: Date;
 }

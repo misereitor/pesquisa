@@ -14,3 +14,15 @@ export const buildUpdateQuery = (table: string, data: Partial<any>) => {
 
   return { text, values };
 };
+
+export const createAssociationCategoriesBuildQuery = (data: Partial<any>) => {
+  const keys = Object.keys(data[0]);
+  const fields = keys.join(', ');
+  const placeholders = [];
+  for (let i = 0; i < data.length; i++) {
+    const values = Object.values(data[i]);
+    placeholders.push(`(${values})`);
+  }
+  const text = `INSERT INTO category_company_association (${fields}) VALUES ${placeholders} RETURNING *`;
+  return { text };
+};

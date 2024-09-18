@@ -1,6 +1,6 @@
 import * as iam from 'aws-cdk-lib/aws-iam';
-import { policies } from '../policies/policies';
 import { Construct } from 'constructs';
+import { policies } from '../../policies/policies';
 
 export function createIamRole(scope: Construct): iam.Role {
   const iamRole = new iam.Role(scope, 'PesquisaRole', {

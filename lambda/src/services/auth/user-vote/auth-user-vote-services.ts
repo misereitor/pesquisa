@@ -6,7 +6,7 @@ import {
   createConfirmedLogin,
   deleteCodeConfirmed,
   getConfirmationUserVote
-} from '../../queryDB/login_user_vote';
+} from '../../queryDB/login-user-vote';
 import {
   createUserVote,
   getUserVoteFromCPF,
