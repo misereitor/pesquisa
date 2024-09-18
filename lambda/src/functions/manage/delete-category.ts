@@ -1,20 +1,24 @@
-import { disableCategoryService } from '../../services/manage/company/category-services';
+import { valideTokenUserAdminService } from '../../services/auth/user-admin/valide-token-user-admin-service';
+import { disableCategoryService } from '../../services/manage/category/category-services';
 
 exports.handler = async (event: any) => {
-  const { id } = event.pathParameters;
   try {
+    const token = event.headers.Authorization;
+    const valideToken = valideTokenUserAdminService(token);
+    if (!valideToken) throw new Error('invalid token');
+    const { id } = event.pathParameters;
     await disableCategoryService(id);
     return {
       statusCode: 200,
       body: JSON.stringify({
-        message: 'Login iniciado'
+        message: 'success'
       })
     };
   } catch (error: any) {
     return {
       statusCode: 400,
       body: JSON.stringify({
-        message: 'Erro ao criar usuário',
+        message: 'failed',
         error: error.message
       })
     };

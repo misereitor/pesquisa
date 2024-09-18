@@ -1,20 +1,24 @@
+import { valideTokenUserAdminService } from '../../services/auth/user-admin/valide-token-user-admin-service';
 import { deleteAssociationService } from '../../services/manage/association/association-services';
 
 exports.handler = async (event: any) => {
-  const { id_category, id_company } = JSON.parse(event.body);
   try {
+    const token = event.headers.Authorization;
+    const valideToken = valideTokenUserAdminService(token);
+    if (!valideToken) throw new Error('invalid token');
+    const { id_category, id_company } = JSON.parse(event.body);
     await deleteAssociationService(id_category, id_company);
     return {
       statusCode: 200,
       body: JSON.stringify({
-        message: 'Login iniciado'
+        message: 'success'
       })
     };
   } catch (error: any) {
     return {
       statusCode: 400,
       body: JSON.stringify({
-        message: 'Erro ao criar usuário',
+        message: 'failed',
         error: error.message
       })
     };

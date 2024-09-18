@@ -35,7 +35,6 @@ export async function getAllCompany() {
     const query = {
       text: 'SELECT * FROM company WHERE active = TRUE'
     };
-
     const { rows } = await client.query(query);
     return rows as unknown as Company[];
   } catch (e: any) {

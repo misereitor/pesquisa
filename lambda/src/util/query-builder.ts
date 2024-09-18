@@ -23,6 +23,32 @@ export const createAssociationCategoriesBuildQuery = (data: Partial<any>) => {
     const values = Object.values(data[i]);
     placeholders.push(`(${values})`);
   }
-  const text = `INSERT INTO category_company_association (${fields}) VALUES ${placeholders} RETURNING *`;
+  const text = `INSERT INTO category_company_association (${fields}) VALUES ${placeholders} ON CONFLICT (${fields}) DO NOTHING RETURNING *`;
+  return { text };
+};
+
+export const createCategoriesBuildQuery = (data: Partial<any>) => {
+  const keys = Object.keys(data[0]);
+  const fields = keys.join(', ');
+  const placeholders = [];
+  for (let i = 0; i < data.length; i++) {
+    const values = Object.values(data[i]);
+    placeholders.push(`(${values})`);
+  }
+  const text = `INSERT INTO category (${fields}) VALUES ${placeholders} RETURNING *`;
+  return { text };
+};
+
+export const createCompaniesBuildQuery = (data: Partial<any>) => {
+  const keys = Object.keys(data[0]);
+  const fields = keys.join(', ');
+  const placeholders = [];
+  for (let i = 0; i < data.length; i++) {
+    const values = Object.values(data[i])
+      .map((value) => `'${value}'`)
+      .join(', ');
+    placeholders.push(`(${values})`);
+  }
+  const text = `INSERT INTO company (${fields}) VALUES ${placeholders} RETURNING *`;
   return { text };
 };

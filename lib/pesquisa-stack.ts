@@ -73,6 +73,13 @@ export class PesquisaStack extends cdk.Stack {
     const lambdaCreateCategory = new apigateway.LambdaIntegration(
       manageLambdas.createCategoryLambda
     );
+
+    const lambdaCreateCompanies = new apigateway.LambdaIntegration(
+      manageLambdas.createCompaniesLambda
+    );
+    const lambdaCategoriesAndCompanies = new apigateway.LambdaIntegration(
+      manageLambdas.createCategoriesAndCompaniesLambda
+    );
     const lambdaCreateAssociationCategory = new apigateway.LambdaIntegration(
       manageLambdas.createAssociationCategoryLambda
     );
@@ -134,6 +141,8 @@ export class PesquisaStack extends cdk.Stack {
       api,
       lambdaCreateCompany,
       lambdaCreateCategory,
+      lambdaCreateCompanies,
+      lambdaCategoriesAndCompanies,
       lambdaCreateAssociationCategory,
       lambdaCreateAssociationCategories,
       lambdaUpdateCompany,

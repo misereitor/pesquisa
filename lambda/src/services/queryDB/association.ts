@@ -36,24 +36,26 @@ export async function getAllAssociation() {
         c.name AS name,
         c.active AS active,
         c.date_create AS date_create,
-        JSON_AGG(
-          JSON_BUILD_OBJECT(
-            'id', co.id,
-            'trade_name', co.trade_name,
-            'company_name', co.company_name,
-            'cnpj', co.cnpj,
-            'associate', co.associate,
-            'active', co.active,
-            'date_create', co.date_create
-          )
-        ) AS companies,
-        cca.date_create AS association_date_create
-    FROM category c
-    JOIN category_company_association cca
-      ON c.id = cca.id_category
-    JOIN company co
-      ON co.id = cca.id_company
-    GROUP BY c.id, c.name, c.active, c.date_create, cca.date_create;
+        COALESCE(
+          JSON_AGG(
+            DISTINCT JSONB_BUILD_OBJECT(
+              'id', co.id,
+              'trade_name', co.trade_name,
+              'company_name', co.company_name,
+              'cnpj', co.cnpj,
+              'associate', co.associate,
+              'active', co.active,
+              'date_create', co.date_create
+            )
+          ) FILTER (WHERE co.id IS NOT NULL),
+          '[]'
+        ) AS companies
+      FROM category c
+      LEFT JOIN category_company_association cca
+        ON c.id = cca.id_category
+      LEFT JOIN company co
+        ON co.id = cca.id_company
+      GROUP BY c.id, c.name, c.active, c.date_create;
       `
     };
     const { rows } = await client.query(query);
@@ -76,25 +78,27 @@ export async function getAssociationByCategoryId(id: number) {
         c.name AS name,
         c.active AS active,
         c.date_create AS date_create,
-        JSON_AGG(
-          JSON_BUILD_OBJECT(
-            'id', co.id,
-            'trade_name', co.trade_name,
-            'company_name', co.company_name,
-            'cnpj', co.cnpj,
-            'associate', co.associate,
-            'active', co.active,
-            'date_create', co.date_create
-          )
-        ) AS companies,
-        cca.date_create AS association_date_create
-    FROM category c
-    JOIN category_company_association cca
-      ON c.id = cca.id_category
-    JOIN company co
-      ON co.id = cca.id_company
-    WHERE c.id = $1
-    GROUP BY c.id, c.name, c.active, c.date_create, cca.date_create;
+        COALESCE(
+          JSON_AGG(
+            DISTINCT JSONB_BUILD_OBJECT(
+              'id', co.id,
+              'trade_name', co.trade_name,
+              'company_name', co.company_name,
+              'cnpj', co.cnpj,
+              'associate', co.associate,
+              'active', co.active,
+              'date_create', co.date_create
+            )
+          ) FILTER (WHERE co.id IS NOT NULL),
+          '[]'
+        ) AS companies
+      FROM category c
+      LEFT JOIN category_company_association cca
+        ON c.id = cca.id_category
+      LEFT JOIN company co
+        ON co.id = cca.id_company
+      WHERE c.id = $1
+      GROUP BY c.id, c.name, c.active, c.date_create;
       `,
       values: [id],
       rowMode: 'single'

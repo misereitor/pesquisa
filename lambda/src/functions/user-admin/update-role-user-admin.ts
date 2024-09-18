@@ -10,15 +10,15 @@ exports.handler = async (event: any) => {
     return {
       statusCode: 200,
       body: JSON.stringify({
-        message: 'Login iniciado',
-        user: userUpdate
+        message: 'success',
+        data: userUpdate
       })
     };
   } catch (error: any) {
     return {
       statusCode: 400,
       body: JSON.stringify({
-        message: 'Erro ao inicisar registro ou login.',
+        message: 'failed',
         error: error.message
       })
     };

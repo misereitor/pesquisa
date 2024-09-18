@@ -10,14 +10,14 @@ exports.handler = async (event: any) => {
     return {
       statusCode: 200,
       body: JSON.stringify({
-        message: 'Senha Alterada'
+        message: 'success'
       })
     };
   } catch (error: any) {
     return {
       statusCode: 400,
       body: JSON.stringify({
-        message: 'Erro ao alterar a senha',
+        message: 'failed',
         error: error.message
       })
     };

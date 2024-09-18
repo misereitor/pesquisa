@@ -1,14 +1,18 @@
-import { updateCompanyService } from '../../services/manage/category/company-services';
+import { valideTokenUserAdminService } from '../../services/auth/user-admin/valide-token-user-admin-service';
+import { updateCompanyService } from '../../services/manage/company/company-services';
 import { Company } from '../../types/company';
 
 exports.handler = async (event: any) => {
-  const company: Company = JSON.parse(event.body);
   try {
+    const token = event.headers.Authorization;
+    const valideToken = valideTokenUserAdminService(token);
+    if (!valideToken) throw new Error('invalid token');
+    const company: Company = JSON.parse(event.body);
     const update = await updateCompanyService(company);
     return {
       statusCode: 200,
       body: JSON.stringify({
-        message: 'Login iniciado',
+        message: 'success',
         data: update
       })
     };
@@ -16,7 +20,7 @@ exports.handler = async (event: any) => {
     return {
       statusCode: 400,
       body: JSON.stringify({
-        message: 'Erro ao criar usuário',
+        message: 'failed',
         error: error.message
       })
     };

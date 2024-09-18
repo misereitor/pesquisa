@@ -1,18 +1,18 @@
 import { valideTokenUserAdminService } from '../../services/auth/user-admin/valide-token-user-admin-service';
-import { getCompanyByIdService } from '../../services/manage/company/company-services';
+import { createCategoriesService } from '../../services/manage/category/category-services';
+import { AssociationCompanyAndCategory } from '../../types/association-company-category';
 
 exports.handler = async (event: any) => {
   try {
     const token = event.headers.Authorization;
     const valideToken = valideTokenUserAdminService(token);
     if (!valideToken) throw new Error('invalid token');
-    const { id } = event.queryStringParameters;
-    const company = await getCompanyByIdService(id);
+    const categories: AssociationCompanyAndCategory[] = JSON.parse(event.body);
+    await createCategoriesService(categories);
     return {
       statusCode: 200,
       body: JSON.stringify({
-        message: 'success',
-        data: company
+        message: 'success'
       })
     };
   } catch (error: any) {

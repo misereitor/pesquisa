@@ -146,6 +146,6 @@ function createToken(phone: string) {
 
 async function updateUser(user: UserVote) {
   const updateUser = buildUpdateQuery('users_vote', user);
-  const update = await queryCuston(updateUser.text, updateUser.values);
-  return update;
+  const { rows } = await queryCuston(updateUser.text, updateUser.values);
+  return rows as unknown as UserVote;
 }

@@ -7,8 +7,8 @@ export async function queryCuston(text: string, values: any) {
       text,
       values
     };
-    const { rows } = await client.query(query);
-    return rows[0];
+    const rows = await client.query(query);
+    return rows;
   } catch (e: any) {
     console.warn(e);
     throw new Error(e.message);

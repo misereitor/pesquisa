@@ -35,6 +35,30 @@ export function createManageLambdas(scope: cdk.Stack, iamRole: iam.Role) {
     }
   );
 
+  const createCompaniesLambda = new lambda.Function(
+    scope,
+    'CreateCompaniesLambda',
+    {
+      ...defaultLambdaOptions,
+      code: lambda.Code.fromAsset('lambda'),
+      environment: environment,
+      handler: 'src/functions/manage/create-companies.handler',
+      role: iamRole
+    }
+  );
+
+  const createCategoriesAndCompaniesLambda = new lambda.Function(
+    scope,
+    'CreateCategoriesAndCompaniesLambda',
+    {
+      ...defaultLambdaOptions,
+      code: lambda.Code.fromAsset('lambda'),
+      environment: environment,
+      handler: 'src/functions/manage/create-categories-with-companies.handler',
+      role: iamRole
+    }
+  );
+
   const createAssociationCategoryLambda = new lambda.Function(
     scope,
     'CreateAssociationCategoryLambda',
@@ -194,6 +218,8 @@ export function createManageLambdas(scope: cdk.Stack, iamRole: iam.Role) {
   return {
     createCompanyLambda,
     createCategoryLambda,
+    createCompaniesLambda,
+    createCategoriesAndCompaniesLambda,
     createAssociationCategoryLambda,
     createAssociationCategoriesLambda,
     updateCompanyLambda,

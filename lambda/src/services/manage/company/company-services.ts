@@ -1,4 +1,5 @@
 import { Company } from '../../../types/company';
+import { createCompaniesBuildQuery } from '../../../util/query-builder';
 import {
   createCompany,
   disableCompany,
@@ -8,6 +9,7 @@ import {
   getCompanyById,
   updateCompany
 } from '../../queryDB/company';
+import { queryCuston } from '../../queryDB/custom-query';
 
 export async function createCompanyService(company: Company) {
   try {
@@ -23,6 +25,37 @@ export async function createCompanyService(company: Company) {
     company.id = companyExist.id;
 
     return await updateCompany(company);
+  } catch (e: any) {
+    throw new Error(e.message);
+  }
+}
+
+export async function createCompaniesService(company: Company[]) {
+  const createCompanies: Company[] = [];
+  const allCompanies = [];
+  const companies = await getAllCompany();
+  console.log('allCompanies');
+  try {
+    for (let i = 0; i < company.length; i++) {
+      company[i].cnpj = company[i].cnpj.replace(/\D/g, '');
+
+      const companyExistCnpj = companies.find(
+        (comp) => comp.cnpj === company[i].cnpj
+      );
+      if (companyExistCnpj) allCompanies.push(companyExistCnpj);
+      if (!companyExistCnpj) {
+        createCompanies.push(company[i]);
+      } else if (!companyExistCnpj?.active) {
+        await enableCompany(companyExistCnpj.id);
+        company[i].id = companyExistCnpj.id;
+        await updateCompany(company[i]);
+      }
+    }
+    if (createCompanies.length === 0) return allCompanies;
+    const query = createCompaniesBuildQuery(createCompanies);
+    const { rows } = await queryCuston(query.text, []);
+    allCompanies.push(...rows);
+    return allCompanies;
   } catch (e: any) {
     throw new Error(e.message);
   }

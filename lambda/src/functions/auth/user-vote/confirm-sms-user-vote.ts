@@ -7,14 +7,15 @@ exports.handler = async (event: any) => {
     return {
       statusCode: 200,
       body: JSON.stringify({
-        tokens: token
+        message: 'success',
+        data: token
       })
     };
   } catch (error: any) {
     return {
       statusCode: 400,
       body: JSON.stringify({
-        message: 'Erro ao confirmar o código SMS.',
+        message: 'failed',
         errors: error.message
       })
     };

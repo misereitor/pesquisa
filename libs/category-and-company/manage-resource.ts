@@ -5,6 +5,8 @@ export function createManageResources(
   api: apigateway.RestApi,
   lambdaCreateCompany: LambdaIntegration,
   lambdaCreateCategory: LambdaIntegration,
+  lambdaCreateCompanies: LambdaIntegration,
+  lambdaCategoriesAndCompanies: LambdaIntegration,
   lambdaCreateAssociationCategory: LambdaIntegration,
   lambdaCreateAssociationCategories: LambdaIntegration,
   lambdaUpdateCompany: LambdaIntegration,
@@ -24,6 +26,17 @@ export function createManageResources(
 
   const createCategoryResource = api.root.addResource('create-category');
   createCategoryResource.addMethod('POST', lambdaCreateCategory);
+
+  const createCompaniesResource = api.root.addResource('create-companies');
+  createCompaniesResource.addMethod('POST', lambdaCreateCompanies);
+
+  const createCategoriesAndCompaniesResource = api.root.addResource(
+    'create-categories-with-companies'
+  );
+  createCategoriesAndCompaniesResource.addMethod(
+    'POST',
+    lambdaCategoriesAndCompanies
+  );
 
   const createAssociationCategoryResource = api.root.addResource(
     'create-association-category'
