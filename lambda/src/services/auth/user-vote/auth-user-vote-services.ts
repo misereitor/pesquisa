@@ -17,22 +17,21 @@ import { SNSClient, PublishCommand } from '@aws-sdk/client-sns';
 import * as JWT from 'jsonwebtoken';
 
 const snsClient = new SNSClient();
-const SECRET_USER_VOTE = process.env.SECRET_USER_VOTE;
+const { SECRET_USER_VOTE, URL_API_WHATSAPP } = process.env;
 
-export async function createUserAndSendSMS(user: UserVote) {
+export async function createUserAndSendMessage(user: UserVote, type: string) {
   try {
+    let userVote: UserVote;
     const checksUser = await checksUserExistsAndDataIsTrue(user);
     if (checksUser) {
-      const code = await createSMS(checksUser);
-      const send = await sendSMS(code, user.phone);
-      await Promise.all([code, send]);
-      return checksUser;
+      userVote = checksUser;
+    } else {
+      const createUser = await createUserVote(user);
+      userVote = createUser;
     }
-    const createUser = await createUserVote(user);
-    const code = await createSMS(createUser);
-    const send = await sendSMS(code, user.phone);
-    await Promise.all([createUser, code, send]);
-    return createUser;
+    const code = await createCode(userVote);
+    await sendMessage(code, user.phone, type);
+    return userVote;
   } catch (error: any) {
     throw new Error(error.message);
   }
@@ -78,7 +77,7 @@ async function checksUserExistsAndDataIsTrue(user: UserVote) {
   }
 }
 
-async function createSMS(user: UserVote) {
+async function createCode(user: UserVote) {
   try {
     const date = new Date();
     const expiration_date = new Date(date.setHours(date.getHours() + 24));
@@ -97,21 +96,58 @@ async function createSMS(user: UserVote) {
   }
 }
 
-async function sendSMS(code: string, phone: string) {
+async function sendMessage(code: string, phone: string, type: string) {
+  const codeEdit = `${code.substring(0, 3)}-${code.substring(3, 6)}`;
+  const message = `Seu código de confirmação é para os melhores do ano é: ${codeEdit}`;
   try {
-    const codeEdit = `${code.substring(0, 3)}-${code.substring(3, 6)}`;
-    const input = {
-      PhoneNumber: '+55' + phone,
-      Message: `Seu código de confirmação é para os melhores do ano é: ${codeEdit}`
-    };
-    const command = new PublishCommand(input);
-    await snsClient.send(command);
+    const checkNumberIsWhatsapp = await fetch(
+      `${URL_API_WHATSAPP}/api/contacts/check-exists?phone=${phone}&session=default`
+    );
+    if (checkNumberIsWhatsapp.ok) {
+      if (type === 'whatsapp') {
+        const data = await checkNumberIsWhatsapp.json();
+        if (data.numberExists) {
+          await sendMessageWhatsapp(data.chatId, message);
+          return;
+        } else {
+          await sendMessageSMS(phone, message);
+        }
+      }
+    }
+    if (type === 'sms') {
+      await sendMessageSMS(phone, message);
+      return;
+    }
   } catch (error: any) {
     throw new Error(error.message);
   }
 }
 
-export async function confirmSMS(code: string, phone: string) {
+async function sendMessageSMS(phone: string, message: string) {
+  const input = {
+    PhoneNumber: '+55' + phone,
+    Message: message
+  };
+  const command = new PublishCommand(input);
+  await snsClient.send(command);
+}
+
+async function sendMessageWhatsapp(phone: string, message: string) {
+  const input = {
+    chatId: phone,
+    text: message,
+    session: 'default'
+  };
+  await fetch(`${URL_API_WHATSAPP}/api/sendText`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(input)
+  });
+}
+
+export async function confirmCode(code: string, phone: string) {
   try {
     const valide = await valideCode(code, phone);
     const gerateToken = createToken(phone);
@@ -147,5 +183,5 @@ function createToken(phone: string) {
 async function updateUser(user: UserVote) {
   const updateUser = buildUpdateQuery('users_vote', user);
   const { rows } = await queryCuston(updateUser.text, updateUser.values);
-  return rows as unknown as UserVote;
+  return rows[0] as unknown as UserVote;
 }

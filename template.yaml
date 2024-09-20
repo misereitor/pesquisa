@@ -52,7 +52,7 @@ Resources:
     Properties:
       Code:
         S3Bucket: cdk-hnb659fds-assets-851725500352-us-east-1
-        S3Key: f5e1e3b0f017d91caa78557c80491a38c1cb324012b425320cdf157c1022d681.zip
+        S3Key: 84571a4b6958865c99a22a3f14a26ae81fc7d634e2bf2d994d042fffad8f0895.zip
       Environment:
         Variables:
           ENV: dev
@@ -64,6 +64,8 @@ Resources:
           CDK_DEFAULT_REGION: us-east-1
           SECRET_USER_VOTE: 10caf33a2468a73fe739157e956989d16d00257993e406335b6a57e7a9f8be1a0d70dcf776e4e5a6de1298c3f4373eb91662cf9d4bbba276601823887cef3252
           SECRET_USER_ADMIN: 88efbeb658dabedfa3e434c7547d4d3672f7a278b97822228819ae603a8a3130820fdcc554ea7b86fb96017fed65723e3049c6629d27c55bd02be64b9d7e9183
+          API_KEY_WHATSAPP: jyS49whZii1iIBx4mmRMfGtPxTjTH5EtZLA0uqLUJu7Iuq0xTDqlP3OtPaOJG8LaXViuPXzb1OI6CxQ7tB3BchCnA7uZV4p5o0eu3teYPqustfevzJFAcZb0gvIX0Nqy
+          URL_API_WHATSAPP: http://159.112.188.225:3000
       Handler: src/functions/auth/user-vote/login-user-vote.handler
       MemorySize: 128
       Role:
@@ -119,7 +121,7 @@ Resources:
     Properties:
       Code:
         S3Bucket: cdk-hnb659fds-assets-851725500352-us-east-1
-        S3Key: f5e1e3b0f017d91caa78557c80491a38c1cb324012b425320cdf157c1022d681.zip
+        S3Key: 84571a4b6958865c99a22a3f14a26ae81fc7d634e2bf2d994d042fffad8f0895.zip
       Environment:
         Variables:
           ENV: dev
@@ -131,6 +133,8 @@ Resources:
           CDK_DEFAULT_REGION: us-east-1
           SECRET_USER_VOTE: 10caf33a2468a73fe739157e956989d16d00257993e406335b6a57e7a9f8be1a0d70dcf776e4e5a6de1298c3f4373eb91662cf9d4bbba276601823887cef3252
           SECRET_USER_ADMIN: 88efbeb658dabedfa3e434c7547d4d3672f7a278b97822228819ae603a8a3130820fdcc554ea7b86fb96017fed65723e3049c6629d27c55bd02be64b9d7e9183
+          API_KEY_WHATSAPP: jyS49whZii1iIBx4mmRMfGtPxTjTH5EtZLA0uqLUJu7Iuq0xTDqlP3OtPaOJG8LaXViuPXzb1OI6CxQ7tB3BchCnA7uZV4p5o0eu3teYPqustfevzJFAcZb0gvIX0Nqy
+          URL_API_WHATSAPP: http://159.112.188.225:3000
       Handler: src/functions/auth/user-vote/confirm-sms-user-vote.handler
       MemorySize: 128
       Role:
@@ -161,7 +165,7 @@ Resources:
     Properties:
       Code:
         S3Bucket: cdk-hnb659fds-assets-851725500352-us-east-1
-        S3Key: f5e1e3b0f017d91caa78557c80491a38c1cb324012b425320cdf157c1022d681.zip
+        S3Key: 84571a4b6958865c99a22a3f14a26ae81fc7d634e2bf2d994d042fffad8f0895.zip
       Environment:
         Variables:
           ENV: dev
@@ -173,6 +177,8 @@ Resources:
           CDK_DEFAULT_REGION: us-east-1
           SECRET_USER_VOTE: 10caf33a2468a73fe739157e956989d16d00257993e406335b6a57e7a9f8be1a0d70dcf776e4e5a6de1298c3f4373eb91662cf9d4bbba276601823887cef3252
           SECRET_USER_ADMIN: 88efbeb658dabedfa3e434c7547d4d3672f7a278b97822228819ae603a8a3130820fdcc554ea7b86fb96017fed65723e3049c6629d27c55bd02be64b9d7e9183
+          API_KEY_WHATSAPP: jyS49whZii1iIBx4mmRMfGtPxTjTH5EtZLA0uqLUJu7Iuq0xTDqlP3OtPaOJG8LaXViuPXzb1OI6CxQ7tB3BchCnA7uZV4p5o0eu3teYPqustfevzJFAcZb0gvIX0Nqy
+          URL_API_WHATSAPP: http://159.112.188.225:3000
       Handler: src/functions/auth/user-vote/valide-token-user-vote.handler
       MemorySize: 128
       Role:
@@ -203,7 +209,7 @@ Resources:
     Properties:
       Code:
         S3Bucket: cdk-hnb659fds-assets-851725500352-us-east-1
-        S3Key: f5e1e3b0f017d91caa78557c80491a38c1cb324012b425320cdf157c1022d681.zip
+        S3Key: 84571a4b6958865c99a22a3f14a26ae81fc7d634e2bf2d994d042fffad8f0895.zip
       Environment:
         Variables:
           ENV: dev
@@ -215,6 +221,8 @@ Resources:
           CDK_DEFAULT_REGION: us-east-1
           SECRET_USER_VOTE: 10caf33a2468a73fe739157e956989d16d00257993e406335b6a57e7a9f8be1a0d70dcf776e4e5a6de1298c3f4373eb91662cf9d4bbba276601823887cef3252
           SECRET_USER_ADMIN: 88efbeb658dabedfa3e434c7547d4d3672f7a278b97822228819ae603a8a3130820fdcc554ea7b86fb96017fed65723e3049c6629d27c55bd02be64b9d7e9183
+          API_KEY_WHATSAPP: jyS49whZii1iIBx4mmRMfGtPxTjTH5EtZLA0uqLUJu7Iuq0xTDqlP3OtPaOJG8LaXViuPXzb1OI6CxQ7tB3BchCnA7uZV4p5o0eu3teYPqustfevzJFAcZb0gvIX0Nqy
+          URL_API_WHATSAPP: http://159.112.188.225:3000
       Handler: src/functions/user-admin/create-user-admin.handler
       MemorySize: 128
       Role:
@@ -245,7 +253,7 @@ Resources:
     Properties:
       Code:
         S3Bucket: cdk-hnb659fds-assets-851725500352-us-east-1
-        S3Key: f5e1e3b0f017d91caa78557c80491a38c1cb324012b425320cdf157c1022d681.zip
+        S3Key: 84571a4b6958865c99a22a3f14a26ae81fc7d634e2bf2d994d042fffad8f0895.zip
       Environment:
         Variables:
           ENV: dev
@@ -257,6 +265,8 @@ Resources:
           CDK_DEFAULT_REGION: us-east-1
           SECRET_USER_VOTE: 10caf33a2468a73fe739157e956989d16d00257993e406335b6a57e7a9f8be1a0d70dcf776e4e5a6de1298c3f4373eb91662cf9d4bbba276601823887cef3252
           SECRET_USER_ADMIN: 88efbeb658dabedfa3e434c7547d4d3672f7a278b97822228819ae603a8a3130820fdcc554ea7b86fb96017fed65723e3049c6629d27c55bd02be64b9d7e9183
+          API_KEY_WHATSAPP: jyS49whZii1iIBx4mmRMfGtPxTjTH5EtZLA0uqLUJu7Iuq0xTDqlP3OtPaOJG8LaXViuPXzb1OI6CxQ7tB3BchCnA7uZV4p5o0eu3teYPqustfevzJFAcZb0gvIX0Nqy
+          URL_API_WHATSAPP: http://159.112.188.225:3000
       Handler: src/functions/user-admin/update-user-admin.handler
       MemorySize: 128
       Role:
@@ -287,7 +297,7 @@ Resources:
     Properties:
       Code:
         S3Bucket: cdk-hnb659fds-assets-851725500352-us-east-1
-        S3Key: f5e1e3b0f017d91caa78557c80491a38c1cb324012b425320cdf157c1022d681.zip
+        S3Key: 84571a4b6958865c99a22a3f14a26ae81fc7d634e2bf2d994d042fffad8f0895.zip
       Environment:
         Variables:
           ENV: dev
@@ -299,6 +309,8 @@ Resources:
           CDK_DEFAULT_REGION: us-east-1
           SECRET_USER_VOTE: 10caf33a2468a73fe739157e956989d16d00257993e406335b6a57e7a9f8be1a0d70dcf776e4e5a6de1298c3f4373eb91662cf9d4bbba276601823887cef3252
           SECRET_USER_ADMIN: 88efbeb658dabedfa3e434c7547d4d3672f7a278b97822228819ae603a8a3130820fdcc554ea7b86fb96017fed65723e3049c6629d27c55bd02be64b9d7e9183
+          API_KEY_WHATSAPP: jyS49whZii1iIBx4mmRMfGtPxTjTH5EtZLA0uqLUJu7Iuq0xTDqlP3OtPaOJG8LaXViuPXzb1OI6CxQ7tB3BchCnA7uZV4p5o0eu3teYPqustfevzJFAcZb0gvIX0Nqy
+          URL_API_WHATSAPP: http://159.112.188.225:3000
       Handler: src/functions/user-admin/update-password-user-admin.handler
       MemorySize: 128
       Role:
@@ -329,7 +341,7 @@ Resources:
     Properties:
       Code:
         S3Bucket: cdk-hnb659fds-assets-851725500352-us-east-1
-        S3Key: f5e1e3b0f017d91caa78557c80491a38c1cb324012b425320cdf157c1022d681.zip
+        S3Key: 84571a4b6958865c99a22a3f14a26ae81fc7d634e2bf2d994d042fffad8f0895.zip
       Environment:
         Variables:
           ENV: dev
@@ -341,6 +353,8 @@ Resources:
           CDK_DEFAULT_REGION: us-east-1
           SECRET_USER_VOTE: 10caf33a2468a73fe739157e956989d16d00257993e406335b6a57e7a9f8be1a0d70dcf776e4e5a6de1298c3f4373eb91662cf9d4bbba276601823887cef3252
           SECRET_USER_ADMIN: 88efbeb658dabedfa3e434c7547d4d3672f7a278b97822228819ae603a8a3130820fdcc554ea7b86fb96017fed65723e3049c6629d27c55bd02be64b9d7e9183
+          API_KEY_WHATSAPP: jyS49whZii1iIBx4mmRMfGtPxTjTH5EtZLA0uqLUJu7Iuq0xTDqlP3OtPaOJG8LaXViuPXzb1OI6CxQ7tB3BchCnA7uZV4p5o0eu3teYPqustfevzJFAcZb0gvIX0Nqy
+          URL_API_WHATSAPP: http://159.112.188.225:3000
       Handler: src/functions/auth/user-admin/login-user-admin.handler
       MemorySize: 128
       Role:
@@ -371,7 +385,7 @@ Resources:
     Properties:
       Code:
         S3Bucket: cdk-hnb659fds-assets-851725500352-us-east-1
-        S3Key: f5e1e3b0f017d91caa78557c80491a38c1cb324012b425320cdf157c1022d681.zip
+        S3Key: 84571a4b6958865c99a22a3f14a26ae81fc7d634e2bf2d994d042fffad8f0895.zip
       Environment:
         Variables:
           ENV: dev
@@ -383,6 +397,8 @@ Resources:
           CDK_DEFAULT_REGION: us-east-1
           SECRET_USER_VOTE: 10caf33a2468a73fe739157e956989d16d00257993e406335b6a57e7a9f8be1a0d70dcf776e4e5a6de1298c3f4373eb91662cf9d4bbba276601823887cef3252
           SECRET_USER_ADMIN: 88efbeb658dabedfa3e434c7547d4d3672f7a278b97822228819ae603a8a3130820fdcc554ea7b86fb96017fed65723e3049c6629d27c55bd02be64b9d7e9183
+          API_KEY_WHATSAPP: jyS49whZii1iIBx4mmRMfGtPxTjTH5EtZLA0uqLUJu7Iuq0xTDqlP3OtPaOJG8LaXViuPXzb1OI6CxQ7tB3BchCnA7uZV4p5o0eu3teYPqustfevzJFAcZb0gvIX0Nqy
+          URL_API_WHATSAPP: http://159.112.188.225:3000
       Handler: src/functions/user-admin/update-role-user-admin.handler
       MemorySize: 128
       Role:
@@ -413,7 +429,7 @@ Resources:
     Properties:
       Code:
         S3Bucket: cdk-hnb659fds-assets-851725500352-us-east-1
-        S3Key: f5e1e3b0f017d91caa78557c80491a38c1cb324012b425320cdf157c1022d681.zip
+        S3Key: 84571a4b6958865c99a22a3f14a26ae81fc7d634e2bf2d994d042fffad8f0895.zip
       Environment:
         Variables:
           ENV: dev
@@ -425,6 +441,8 @@ Resources:
           CDK_DEFAULT_REGION: us-east-1
           SECRET_USER_VOTE: 10caf33a2468a73fe739157e956989d16d00257993e406335b6a57e7a9f8be1a0d70dcf776e4e5a6de1298c3f4373eb91662cf9d4bbba276601823887cef3252
           SECRET_USER_ADMIN: 88efbeb658dabedfa3e434c7547d4d3672f7a278b97822228819ae603a8a3130820fdcc554ea7b86fb96017fed65723e3049c6629d27c55bd02be64b9d7e9183
+          API_KEY_WHATSAPP: jyS49whZii1iIBx4mmRMfGtPxTjTH5EtZLA0uqLUJu7Iuq0xTDqlP3OtPaOJG8LaXViuPXzb1OI6CxQ7tB3BchCnA7uZV4p5o0eu3teYPqustfevzJFAcZb0gvIX0Nqy
+          URL_API_WHATSAPP: http://159.112.188.225:3000
       Handler: src/functions/auth/user-admin/valide-token-user-admin.handler
       MemorySize: 128
       Role:
@@ -455,7 +473,7 @@ Resources:
     Properties:
       Code:
         S3Bucket: cdk-hnb659fds-assets-851725500352-us-east-1
-        S3Key: f5e1e3b0f017d91caa78557c80491a38c1cb324012b425320cdf157c1022d681.zip
+        S3Key: 84571a4b6958865c99a22a3f14a26ae81fc7d634e2bf2d994d042fffad8f0895.zip
       Environment:
         Variables:
           ENV: dev
@@ -467,6 +485,8 @@ Resources:
           CDK_DEFAULT_REGION: us-east-1
           SECRET_USER_VOTE: 10caf33a2468a73fe739157e956989d16d00257993e406335b6a57e7a9f8be1a0d70dcf776e4e5a6de1298c3f4373eb91662cf9d4bbba276601823887cef3252
           SECRET_USER_ADMIN: 88efbeb658dabedfa3e434c7547d4d3672f7a278b97822228819ae603a8a3130820fdcc554ea7b86fb96017fed65723e3049c6629d27c55bd02be64b9d7e9183
+          API_KEY_WHATSAPP: jyS49whZii1iIBx4mmRMfGtPxTjTH5EtZLA0uqLUJu7Iuq0xTDqlP3OtPaOJG8LaXViuPXzb1OI6CxQ7tB3BchCnA7uZV4p5o0eu3teYPqustfevzJFAcZb0gvIX0Nqy
+          URL_API_WHATSAPP: http://159.112.188.225:3000
       Handler: src/functions/manage/create-company.handler
       MemorySize: 128
       Role:
@@ -497,7 +517,7 @@ Resources:
     Properties:
       Code:
         S3Bucket: cdk-hnb659fds-assets-851725500352-us-east-1
-        S3Key: f5e1e3b0f017d91caa78557c80491a38c1cb324012b425320cdf157c1022d681.zip
+        S3Key: 84571a4b6958865c99a22a3f14a26ae81fc7d634e2bf2d994d042fffad8f0895.zip
       Environment:
         Variables:
           ENV: dev
@@ -509,6 +529,8 @@ Resources:
           CDK_DEFAULT_REGION: us-east-1
           SECRET_USER_VOTE: 10caf33a2468a73fe739157e956989d16d00257993e406335b6a57e7a9f8be1a0d70dcf776e4e5a6de1298c3f4373eb91662cf9d4bbba276601823887cef3252
           SECRET_USER_ADMIN: 88efbeb658dabedfa3e434c7547d4d3672f7a278b97822228819ae603a8a3130820fdcc554ea7b86fb96017fed65723e3049c6629d27c55bd02be64b9d7e9183
+          API_KEY_WHATSAPP: jyS49whZii1iIBx4mmRMfGtPxTjTH5EtZLA0uqLUJu7Iuq0xTDqlP3OtPaOJG8LaXViuPXzb1OI6CxQ7tB3BchCnA7uZV4p5o0eu3teYPqustfevzJFAcZb0gvIX0Nqy
+          URL_API_WHATSAPP: http://159.112.188.225:3000
       Handler: src/functions/manage/create-category.handler
       MemorySize: 128
       Role:
@@ -539,7 +561,7 @@ Resources:
     Properties:
       Code:
         S3Bucket: cdk-hnb659fds-assets-851725500352-us-east-1
-        S3Key: f5e1e3b0f017d91caa78557c80491a38c1cb324012b425320cdf157c1022d681.zip
+        S3Key: 84571a4b6958865c99a22a3f14a26ae81fc7d634e2bf2d994d042fffad8f0895.zip
       Environment:
         Variables:
           ENV: dev
@@ -551,6 +573,8 @@ Resources:
           CDK_DEFAULT_REGION: us-east-1
           SECRET_USER_VOTE: 10caf33a2468a73fe739157e956989d16d00257993e406335b6a57e7a9f8be1a0d70dcf776e4e5a6de1298c3f4373eb91662cf9d4bbba276601823887cef3252
           SECRET_USER_ADMIN: 88efbeb658dabedfa3e434c7547d4d3672f7a278b97822228819ae603a8a3130820fdcc554ea7b86fb96017fed65723e3049c6629d27c55bd02be64b9d7e9183
+          API_KEY_WHATSAPP: jyS49whZii1iIBx4mmRMfGtPxTjTH5EtZLA0uqLUJu7Iuq0xTDqlP3OtPaOJG8LaXViuPXzb1OI6CxQ7tB3BchCnA7uZV4p5o0eu3teYPqustfevzJFAcZb0gvIX0Nqy
+          URL_API_WHATSAPP: http://159.112.188.225:3000
       Handler: src/functions/manage/create-companies.handler
       MemorySize: 128
       Role:
@@ -581,7 +605,7 @@ Resources:
     Properties:
       Code:
         S3Bucket: cdk-hnb659fds-assets-851725500352-us-east-1
-        S3Key: f5e1e3b0f017d91caa78557c80491a38c1cb324012b425320cdf157c1022d681.zip
+        S3Key: 84571a4b6958865c99a22a3f14a26ae81fc7d634e2bf2d994d042fffad8f0895.zip
       Environment:
         Variables:
           ENV: dev
@@ -593,6 +617,8 @@ Resources:
           CDK_DEFAULT_REGION: us-east-1
           SECRET_USER_VOTE: 10caf33a2468a73fe739157e956989d16d00257993e406335b6a57e7a9f8be1a0d70dcf776e4e5a6de1298c3f4373eb91662cf9d4bbba276601823887cef3252
           SECRET_USER_ADMIN: 88efbeb658dabedfa3e434c7547d4d3672f7a278b97822228819ae603a8a3130820fdcc554ea7b86fb96017fed65723e3049c6629d27c55bd02be64b9d7e9183
+          API_KEY_WHATSAPP: jyS49whZii1iIBx4mmRMfGtPxTjTH5EtZLA0uqLUJu7Iuq0xTDqlP3OtPaOJG8LaXViuPXzb1OI6CxQ7tB3BchCnA7uZV4p5o0eu3teYPqustfevzJFAcZb0gvIX0Nqy
+          URL_API_WHATSAPP: http://159.112.188.225:3000
       Handler: src/functions/manage/create-categories-with-companies.handler
       MemorySize: 128
       Role:
@@ -623,7 +649,7 @@ Resources:
     Properties:
       Code:
         S3Bucket: cdk-hnb659fds-assets-851725500352-us-east-1
-        S3Key: f5e1e3b0f017d91caa78557c80491a38c1cb324012b425320cdf157c1022d681.zip
+        S3Key: 84571a4b6958865c99a22a3f14a26ae81fc7d634e2bf2d994d042fffad8f0895.zip
       Environment:
         Variables:
           ENV: dev
@@ -635,6 +661,8 @@ Resources:
           CDK_DEFAULT_REGION: us-east-1
           SECRET_USER_VOTE: 10caf33a2468a73fe739157e956989d16d00257993e406335b6a57e7a9f8be1a0d70dcf776e4e5a6de1298c3f4373eb91662cf9d4bbba276601823887cef3252
           SECRET_USER_ADMIN: 88efbeb658dabedfa3e434c7547d4d3672f7a278b97822228819ae603a8a3130820fdcc554ea7b86fb96017fed65723e3049c6629d27c55bd02be64b9d7e9183
+          API_KEY_WHATSAPP: jyS49whZii1iIBx4mmRMfGtPxTjTH5EtZLA0uqLUJu7Iuq0xTDqlP3OtPaOJG8LaXViuPXzb1OI6CxQ7tB3BchCnA7uZV4p5o0eu3teYPqustfevzJFAcZb0gvIX0Nqy
+          URL_API_WHATSAPP: http://159.112.188.225:3000
       Handler: src/functions/manage/create-association-category.handler
       MemorySize: 128
       Role:
@@ -665,7 +693,7 @@ Resources:
     Properties:
       Code:
         S3Bucket: cdk-hnb659fds-assets-851725500352-us-east-1
-        S3Key: f5e1e3b0f017d91caa78557c80491a38c1cb324012b425320cdf157c1022d681.zip
+        S3Key: 84571a4b6958865c99a22a3f14a26ae81fc7d634e2bf2d994d042fffad8f0895.zip
       Environment:
         Variables:
           ENV: dev
@@ -677,6 +705,8 @@ Resources:
           CDK_DEFAULT_REGION: us-east-1
           SECRET_USER_VOTE: 10caf33a2468a73fe739157e956989d16d00257993e406335b6a57e7a9f8be1a0d70dcf776e4e5a6de1298c3f4373eb91662cf9d4bbba276601823887cef3252
           SECRET_USER_ADMIN: 88efbeb658dabedfa3e434c7547d4d3672f7a278b97822228819ae603a8a3130820fdcc554ea7b86fb96017fed65723e3049c6629d27c55bd02be64b9d7e9183
+          API_KEY_WHATSAPP: jyS49whZii1iIBx4mmRMfGtPxTjTH5EtZLA0uqLUJu7Iuq0xTDqlP3OtPaOJG8LaXViuPXzb1OI6CxQ7tB3BchCnA7uZV4p5o0eu3teYPqustfevzJFAcZb0gvIX0Nqy
+          URL_API_WHATSAPP: http://159.112.188.225:3000
       Handler: src/functions/manage/create-association-categories.handler
       MemorySize: 128
       Role:
@@ -707,7 +737,7 @@ Resources:
     Properties:
       Code:
         S3Bucket: cdk-hnb659fds-assets-851725500352-us-east-1
-        S3Key: f5e1e3b0f017d91caa78557c80491a38c1cb324012b425320cdf157c1022d681.zip
+        S3Key: 84571a4b6958865c99a22a3f14a26ae81fc7d634e2bf2d994d042fffad8f0895.zip
       Environment:
         Variables:
           ENV: dev
@@ -719,6 +749,8 @@ Resources:
           CDK_DEFAULT_REGION: us-east-1
           SECRET_USER_VOTE: 10caf33a2468a73fe739157e956989d16d00257993e406335b6a57e7a9f8be1a0d70dcf776e4e5a6de1298c3f4373eb91662cf9d4bbba276601823887cef3252
           SECRET_USER_ADMIN: 88efbeb658dabedfa3e434c7547d4d3672f7a278b97822228819ae603a8a3130820fdcc554ea7b86fb96017fed65723e3049c6629d27c55bd02be64b9d7e9183
+          API_KEY_WHATSAPP: jyS49whZii1iIBx4mmRMfGtPxTjTH5EtZLA0uqLUJu7Iuq0xTDqlP3OtPaOJG8LaXViuPXzb1OI6CxQ7tB3BchCnA7uZV4p5o0eu3teYPqustfevzJFAcZb0gvIX0Nqy
+          URL_API_WHATSAPP: http://159.112.188.225:3000
       Handler: src/functions/manage/update-company.handler
       MemorySize: 128
       Role:
@@ -749,7 +781,7 @@ Resources:
     Properties:
       Code:
         S3Bucket: cdk-hnb659fds-assets-851725500352-us-east-1
-        S3Key: f5e1e3b0f017d91caa78557c80491a38c1cb324012b425320cdf157c1022d681.zip
+        S3Key: 84571a4b6958865c99a22a3f14a26ae81fc7d634e2bf2d994d042fffad8f0895.zip
       Environment:
         Variables:
           ENV: dev
@@ -761,6 +793,8 @@ Resources:
           CDK_DEFAULT_REGION: us-east-1
           SECRET_USER_VOTE: 10caf33a2468a73fe739157e956989d16d00257993e406335b6a57e7a9f8be1a0d70dcf776e4e5a6de1298c3f4373eb91662cf9d4bbba276601823887cef3252
           SECRET_USER_ADMIN: 88efbeb658dabedfa3e434c7547d4d3672f7a278b97822228819ae603a8a3130820fdcc554ea7b86fb96017fed65723e3049c6629d27c55bd02be64b9d7e9183
+          API_KEY_WHATSAPP: jyS49whZii1iIBx4mmRMfGtPxTjTH5EtZLA0uqLUJu7Iuq0xTDqlP3OtPaOJG8LaXViuPXzb1OI6CxQ7tB3BchCnA7uZV4p5o0eu3teYPqustfevzJFAcZb0gvIX0Nqy
+          URL_API_WHATSAPP: http://159.112.188.225:3000
       Handler: src/functions/manage/update-category.handler
       MemorySize: 128
       Role:
@@ -791,7 +825,7 @@ Resources:
     Properties:
       Code:
         S3Bucket: cdk-hnb659fds-assets-851725500352-us-east-1
-        S3Key: f5e1e3b0f017d91caa78557c80491a38c1cb324012b425320cdf157c1022d681.zip
+        S3Key: 84571a4b6958865c99a22a3f14a26ae81fc7d634e2bf2d994d042fffad8f0895.zip
       Environment:
         Variables:
           ENV: dev
@@ -803,6 +837,8 @@ Resources:
           CDK_DEFAULT_REGION: us-east-1
           SECRET_USER_VOTE: 10caf33a2468a73fe739157e956989d16d00257993e406335b6a57e7a9f8be1a0d70dcf776e4e5a6de1298c3f4373eb91662cf9d4bbba276601823887cef3252
           SECRET_USER_ADMIN: 88efbeb658dabedfa3e434c7547d4d3672f7a278b97822228819ae603a8a3130820fdcc554ea7b86fb96017fed65723e3049c6629d27c55bd02be64b9d7e9183
+          API_KEY_WHATSAPP: jyS49whZii1iIBx4mmRMfGtPxTjTH5EtZLA0uqLUJu7Iuq0xTDqlP3OtPaOJG8LaXViuPXzb1OI6CxQ7tB3BchCnA7uZV4p5o0eu3teYPqustfevzJFAcZb0gvIX0Nqy
+          URL_API_WHATSAPP: http://159.112.188.225:3000
       Handler: src/functions/manage/get-all-company.handler
       MemorySize: 128
       Role:
@@ -833,7 +869,7 @@ Resources:
     Properties:
       Code:
         S3Bucket: cdk-hnb659fds-assets-851725500352-us-east-1
-        S3Key: f5e1e3b0f017d91caa78557c80491a38c1cb324012b425320cdf157c1022d681.zip
+        S3Key: 84571a4b6958865c99a22a3f14a26ae81fc7d634e2bf2d994d042fffad8f0895.zip
       Environment:
         Variables:
           ENV: dev
@@ -845,6 +881,8 @@ Resources:
           CDK_DEFAULT_REGION: us-east-1
           SECRET_USER_VOTE: 10caf33a2468a73fe739157e956989d16d00257993e406335b6a57e7a9f8be1a0d70dcf776e4e5a6de1298c3f4373eb91662cf9d4bbba276601823887cef3252
           SECRET_USER_ADMIN: 88efbeb658dabedfa3e434c7547d4d3672f7a278b97822228819ae603a8a3130820fdcc554ea7b86fb96017fed65723e3049c6629d27c55bd02be64b9d7e9183
+          API_KEY_WHATSAPP: jyS49whZii1iIBx4mmRMfGtPxTjTH5EtZLA0uqLUJu7Iuq0xTDqlP3OtPaOJG8LaXViuPXzb1OI6CxQ7tB3BchCnA7uZV4p5o0eu3teYPqustfevzJFAcZb0gvIX0Nqy
+          URL_API_WHATSAPP: http://159.112.188.225:3000
       Handler: src/functions/manage/get-all-category.handler
       MemorySize: 128
       Role:
@@ -875,7 +913,7 @@ Resources:
     Properties:
       Code:
         S3Bucket: cdk-hnb659fds-assets-851725500352-us-east-1
-        S3Key: f5e1e3b0f017d91caa78557c80491a38c1cb324012b425320cdf157c1022d681.zip
+        S3Key: 84571a4b6958865c99a22a3f14a26ae81fc7d634e2bf2d994d042fffad8f0895.zip
       Environment:
         Variables:
           ENV: dev
@@ -887,6 +925,8 @@ Resources:
           CDK_DEFAULT_REGION: us-east-1
           SECRET_USER_VOTE: 10caf33a2468a73fe739157e956989d16d00257993e406335b6a57e7a9f8be1a0d70dcf776e4e5a6de1298c3f4373eb91662cf9d4bbba276601823887cef3252
           SECRET_USER_ADMIN: 88efbeb658dabedfa3e434c7547d4d3672f7a278b97822228819ae603a8a3130820fdcc554ea7b86fb96017fed65723e3049c6629d27c55bd02be64b9d7e9183
+          API_KEY_WHATSAPP: jyS49whZii1iIBx4mmRMfGtPxTjTH5EtZLA0uqLUJu7Iuq0xTDqlP3OtPaOJG8LaXViuPXzb1OI6CxQ7tB3BchCnA7uZV4p5o0eu3teYPqustfevzJFAcZb0gvIX0Nqy
+          URL_API_WHATSAPP: http://159.112.188.225:3000
       Handler: src/functions/manage/get-all-association.handler
       MemorySize: 128
       Role:
@@ -917,7 +957,7 @@ Resources:
     Properties:
       Code:
         S3Bucket: cdk-hnb659fds-assets-851725500352-us-east-1
-        S3Key: f5e1e3b0f017d91caa78557c80491a38c1cb324012b425320cdf157c1022d681.zip
+        S3Key: 84571a4b6958865c99a22a3f14a26ae81fc7d634e2bf2d994d042fffad8f0895.zip
       Environment:
         Variables:
           ENV: dev
@@ -929,6 +969,8 @@ Resources:
           CDK_DEFAULT_REGION: us-east-1
           SECRET_USER_VOTE: 10caf33a2468a73fe739157e956989d16d00257993e406335b6a57e7a9f8be1a0d70dcf776e4e5a6de1298c3f4373eb91662cf9d4bbba276601823887cef3252
           SECRET_USER_ADMIN: 88efbeb658dabedfa3e434c7547d4d3672f7a278b97822228819ae603a8a3130820fdcc554ea7b86fb96017fed65723e3049c6629d27c55bd02be64b9d7e9183
+          API_KEY_WHATSAPP: jyS49whZii1iIBx4mmRMfGtPxTjTH5EtZLA0uqLUJu7Iuq0xTDqlP3OtPaOJG8LaXViuPXzb1OI6CxQ7tB3BchCnA7uZV4p5o0eu3teYPqustfevzJFAcZb0gvIX0Nqy
+          URL_API_WHATSAPP: http://159.112.188.225:3000
       Handler: src/functions/manage/get-company-by-id.handler
       MemorySize: 128
       Role:
@@ -959,7 +1001,7 @@ Resources:
     Properties:
       Code:
         S3Bucket: cdk-hnb659fds-assets-851725500352-us-east-1
-        S3Key: f5e1e3b0f017d91caa78557c80491a38c1cb324012b425320cdf157c1022d681.zip
+        S3Key: 84571a4b6958865c99a22a3f14a26ae81fc7d634e2bf2d994d042fffad8f0895.zip
       Environment:
         Variables:
           ENV: dev
@@ -971,6 +1013,8 @@ Resources:
           CDK_DEFAULT_REGION: us-east-1
           SECRET_USER_VOTE: 10caf33a2468a73fe739157e956989d16d00257993e406335b6a57e7a9f8be1a0d70dcf776e4e5a6de1298c3f4373eb91662cf9d4bbba276601823887cef3252
           SECRET_USER_ADMIN: 88efbeb658dabedfa3e434c7547d4d3672f7a278b97822228819ae603a8a3130820fdcc554ea7b86fb96017fed65723e3049c6629d27c55bd02be64b9d7e9183
+          API_KEY_WHATSAPP: jyS49whZii1iIBx4mmRMfGtPxTjTH5EtZLA0uqLUJu7Iuq0xTDqlP3OtPaOJG8LaXViuPXzb1OI6CxQ7tB3BchCnA7uZV4p5o0eu3teYPqustfevzJFAcZb0gvIX0Nqy
+          URL_API_WHATSAPP: http://159.112.188.225:3000
       Handler: src/functions/manage/get-category-by-id.handler
       MemorySize: 128
       Role:
@@ -1001,7 +1045,7 @@ Resources:
     Properties:
       Code:
         S3Bucket: cdk-hnb659fds-assets-851725500352-us-east-1
-        S3Key: f5e1e3b0f017d91caa78557c80491a38c1cb324012b425320cdf157c1022d681.zip
+        S3Key: 84571a4b6958865c99a22a3f14a26ae81fc7d634e2bf2d994d042fffad8f0895.zip
       Environment:
         Variables:
           ENV: dev
@@ -1013,6 +1057,8 @@ Resources:
           CDK_DEFAULT_REGION: us-east-1
           SECRET_USER_VOTE: 10caf33a2468a73fe739157e956989d16d00257993e406335b6a57e7a9f8be1a0d70dcf776e4e5a6de1298c3f4373eb91662cf9d4bbba276601823887cef3252
           SECRET_USER_ADMIN: 88efbeb658dabedfa3e434c7547d4d3672f7a278b97822228819ae603a8a3130820fdcc554ea7b86fb96017fed65723e3049c6629d27c55bd02be64b9d7e9183
+          API_KEY_WHATSAPP: jyS49whZii1iIBx4mmRMfGtPxTjTH5EtZLA0uqLUJu7Iuq0xTDqlP3OtPaOJG8LaXViuPXzb1OI6CxQ7tB3BchCnA7uZV4p5o0eu3teYPqustfevzJFAcZb0gvIX0Nqy
+          URL_API_WHATSAPP: http://159.112.188.225:3000
       Handler: src/functions/manage/get-association-by-category-id.handler
       MemorySize: 128
       Role:
@@ -1043,7 +1089,7 @@ Resources:
     Properties:
       Code:
         S3Bucket: cdk-hnb659fds-assets-851725500352-us-east-1
-        S3Key: f5e1e3b0f017d91caa78557c80491a38c1cb324012b425320cdf157c1022d681.zip
+        S3Key: 84571a4b6958865c99a22a3f14a26ae81fc7d634e2bf2d994d042fffad8f0895.zip
       Environment:
         Variables:
           ENV: dev
@@ -1055,6 +1101,8 @@ Resources:
           CDK_DEFAULT_REGION: us-east-1
           SECRET_USER_VOTE: 10caf33a2468a73fe739157e956989d16d00257993e406335b6a57e7a9f8be1a0d70dcf776e4e5a6de1298c3f4373eb91662cf9d4bbba276601823887cef3252
           SECRET_USER_ADMIN: 88efbeb658dabedfa3e434c7547d4d3672f7a278b97822228819ae603a8a3130820fdcc554ea7b86fb96017fed65723e3049c6629d27c55bd02be64b9d7e9183
+          API_KEY_WHATSAPP: jyS49whZii1iIBx4mmRMfGtPxTjTH5EtZLA0uqLUJu7Iuq0xTDqlP3OtPaOJG8LaXViuPXzb1OI6CxQ7tB3BchCnA7uZV4p5o0eu3teYPqustfevzJFAcZb0gvIX0Nqy
+          URL_API_WHATSAPP: http://159.112.188.225:3000
       Handler: src/functions/manage/delete-company.handler
       MemorySize: 128
       Role:
@@ -1085,7 +1133,7 @@ Resources:
     Properties:
       Code:
         S3Bucket: cdk-hnb659fds-assets-851725500352-us-east-1
-        S3Key: f5e1e3b0f017d91caa78557c80491a38c1cb324012b425320cdf157c1022d681.zip
+        S3Key: 84571a4b6958865c99a22a3f14a26ae81fc7d634e2bf2d994d042fffad8f0895.zip
       Environment:
         Variables:
           ENV: dev
@@ -1097,6 +1145,8 @@ Resources:
           CDK_DEFAULT_REGION: us-east-1
           SECRET_USER_VOTE: 10caf33a2468a73fe739157e956989d16d00257993e406335b6a57e7a9f8be1a0d70dcf776e4e5a6de1298c3f4373eb91662cf9d4bbba276601823887cef3252
           SECRET_USER_ADMIN: 88efbeb658dabedfa3e434c7547d4d3672f7a278b97822228819ae603a8a3130820fdcc554ea7b86fb96017fed65723e3049c6629d27c55bd02be64b9d7e9183
+          API_KEY_WHATSAPP: jyS49whZii1iIBx4mmRMfGtPxTjTH5EtZLA0uqLUJu7Iuq0xTDqlP3OtPaOJG8LaXViuPXzb1OI6CxQ7tB3BchCnA7uZV4p5o0eu3teYPqustfevzJFAcZb0gvIX0Nqy
+          URL_API_WHATSAPP: http://159.112.188.225:3000
       Handler: src/functions/manage/delete-category.handler
       MemorySize: 128
       Role:
@@ -1127,7 +1177,7 @@ Resources:
     Properties:
       Code:
         S3Bucket: cdk-hnb659fds-assets-851725500352-us-east-1
-        S3Key: f5e1e3b0f017d91caa78557c80491a38c1cb324012b425320cdf157c1022d681.zip
+        S3Key: 84571a4b6958865c99a22a3f14a26ae81fc7d634e2bf2d994d042fffad8f0895.zip
       Environment:
         Variables:
           ENV: dev
@@ -1139,6 +1189,8 @@ Resources:
           CDK_DEFAULT_REGION: us-east-1
           SECRET_USER_VOTE: 10caf33a2468a73fe739157e956989d16d00257993e406335b6a57e7a9f8be1a0d70dcf776e4e5a6de1298c3f4373eb91662cf9d4bbba276601823887cef3252
           SECRET_USER_ADMIN: 88efbeb658dabedfa3e434c7547d4d3672f7a278b97822228819ae603a8a3130820fdcc554ea7b86fb96017fed65723e3049c6629d27c55bd02be64b9d7e9183
+          API_KEY_WHATSAPP: jyS49whZii1iIBx4mmRMfGtPxTjTH5EtZLA0uqLUJu7Iuq0xTDqlP3OtPaOJG8LaXViuPXzb1OI6CxQ7tB3BchCnA7uZV4p5o0eu3teYPqustfevzJFAcZb0gvIX0Nqy
+          URL_API_WHATSAPP: http://159.112.188.225:3000
       Handler: src/functions/manage/delete-association.handler
       MemorySize: 128
       Role:
