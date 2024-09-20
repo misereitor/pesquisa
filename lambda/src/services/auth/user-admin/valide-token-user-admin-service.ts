@@ -5,6 +5,7 @@ const SECRET_USER_ADMIN = process.env.SECRET_USER_ADMIN;
 export function valideTokenUserAdminService(token: string) {
   try {
     const date = new Date();
+    if (!token) throw new Error('Token invalid');
     const bearer = token.split(' ')[1];
     const decoded = JWT.verify(bearer, SECRET_USER_ADMIN as string);
     if (decoded === null) throw new Error('Token invalid');

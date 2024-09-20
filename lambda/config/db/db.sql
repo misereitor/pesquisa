@@ -19,7 +19,7 @@ CREATE TABLE
   IF NOT EXISTS confirmed_phone (
     id SERIAL PRIMARY KEY,
     phone VARCHAR(20) NOT NULL,
-    id_user INTEGER REFERENCES users_vote (id) NOT NULL, 
+    id_user_vote INTEGER REFERENCES users_vote (id) NOT NULL, 
     expiration_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     code VARCHAR(6)
   );
@@ -27,11 +27,11 @@ CREATE TABLE
 CREATE TABLE
   IF NOT EXISTS users_vote_confirmed_phone_association (
     id SERIAL PRIMARY KEY,
-    id_user INTEGER,
+    id_user_vote INTEGER,
     id_confirmed_phone INTEGER,
-    FOREIGN KEY (id_user) REFERENCES users_vote (id),
+    FOREIGN KEY (id_user_vote) REFERENCES users_vote (id),
     FOREIGN KEY (id_confirmed_phone) REFERENCES confirmed_phone (id),
-    UNIQUE (id_user, id_confirmed_phone)
+    UNIQUE (id_user_vote, id_confirmed_phone)
   );
   
 CREATE TABLE
@@ -80,21 +80,23 @@ CREATE TABLE
 CREATE TABLE
 	IF NOT EXISTS votes (
 		id SERIAL PRIMARY KEY,
-		Id_category INTEGER,
-		Id_user_quest INTEGER,
-		Id_company INTEGER,
+		id_category INTEGER,
+		id_user_vote INTEGER,
+		id_company INTEGER,
     FOREIGN KEY (id_company) REFERENCES company (id),
 		FOREIGN KEY (id_category) REFERENCES category (id),
-    FOREIGN KEY (Id_user_quest) REFERENCES users_vote (id)
+    FOREIGN KEY (Id_user_vote) REFERENCES users_vote (id),
+    UNIQUE (id_category, id_user_vote)
 	);
 
 CREATE TABLE
 	IF NOT EXISTS vote_not_confirmed (
 		id SERIAL PRIMARY KEY,
-		Id_category INTEGER,
-		Id_user_quest INTEGER,
-		Id_company INTEGER,
+		id_category INTEGER,
+		id_user_vote INTEGER,
+		id_company INTEGER,
     FOREIGN KEY (id_company) REFERENCES company (id),
 		FOREIGN KEY (id_category) REFERENCES category (id),
-    FOREIGN KEY (Id_user_quest) REFERENCES users_vote (id)
+    FOREIGN KEY (Id_user_vote) REFERENCES users_vote (id),
+    UNIQUE (id_category, id_user_vote)
 	);

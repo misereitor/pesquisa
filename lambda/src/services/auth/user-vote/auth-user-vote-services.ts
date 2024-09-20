@@ -85,7 +85,7 @@ async function createCode(user: UserVote) {
     const confirmedLogin: ConfirmedPhone = {
       id: 0,
       phone: user.phone,
-      id_user: user.id,
+      id_user_vote: user.id,
       expiration_date,
       code
     };

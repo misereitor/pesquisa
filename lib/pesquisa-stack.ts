@@ -6,10 +6,12 @@ import * as apigateway from 'aws-cdk-lib/aws-apigateway';
 import { createUserVoteLambdas } from '../libs/user-vote/user-vote-lambda';
 import { createUserAdminLambdas } from '../libs/user-admin/user-admin-lambda';
 import { createIamRole } from '../libs/roles/iam-roles';
-import { createUserVoteResources } from '../libs/user-vote/user-vote-resouce';
+import { createUserVoteResources } from '../libs/user-vote/user-vote-resource';
 import { createUserAdminResources } from '../libs/user-admin/user-admin-resource';
 import { createManageLambdas } from '../libs/category-and-company/manage-lambda';
 import { createManageResources } from '../libs/category-and-company/manage-resource';
+import { createVotesLambdas } from '../libs/votes/votes-lambda';
+import { createVotesResources } from '../libs/votes/votes-resource';
 
 export class PesquisaStack extends cdk.Stack {
   constructor(scope: Construct, id: string, props?: cdk.StackProps) {
@@ -25,6 +27,8 @@ export class PesquisaStack extends cdk.Stack {
 
     const manageLambdas = createManageLambdas(this, iamRole);
 
+    const votesLambda = createVotesLambdas(this, iamRole);
+
     //API
     const api = new apigateway.RestApi(this, 'PesquisaApi', {
       restApiName: 'Pesquisa API',
@@ -34,46 +38,36 @@ export class PesquisaStack extends cdk.Stack {
     const lambdaLoginUserVote = new apigateway.LambdaIntegration(
       userVoteLambdas.loginUserVoteLambda
     );
-
     const lambdaConfirmSMSUserVote = new apigateway.LambdaIntegration(
       userVoteLambdas.confirmSmsUserVoteLambda
     );
-
     const lambdaValideTokenUserVote = new apigateway.LambdaIntegration(
       userVoteLambdas.valideTokenUserVoteLambda
     );
-
     const lambdaCreateUserAdmin = new apigateway.LambdaIntegration(
       userAdminLambdas.createUserAdminLambda
     );
-
     const lambdaUpdateUserAdmin = new apigateway.LambdaIntegration(
       userAdminLambdas.updateUserAdminLambda
     );
-
     const lambdaUpdatePassword = new apigateway.LambdaIntegration(
       userAdminLambdas.updatePasswordUserAdminLambda
     );
-
     const lambdaLoginUserAdmin = new apigateway.LambdaIntegration(
       userAdminLambdas.loginUserAdminLambda
     );
-
     const lambdaUpdateRoleUserAdmin = new apigateway.LambdaIntegration(
       userAdminLambdas.updateRoleUserAdminLambda
     );
-
     const lambdaValideTokenUserAdmin = new apigateway.LambdaIntegration(
       userAdminLambdas.valideTokenUserAdminLambda
     );
-
     const lambdaCreateCompany = new apigateway.LambdaIntegration(
       manageLambdas.createCompanyLambda
     );
     const lambdaCreateCategory = new apigateway.LambdaIntegration(
       manageLambdas.createCategoryLambda
     );
-
     const lambdaCreateCompanies = new apigateway.LambdaIntegration(
       manageLambdas.createCompaniesLambda
     );
@@ -119,6 +113,15 @@ export class PesquisaStack extends cdk.Stack {
     const lambdaDeleteAssociation = new apigateway.LambdaIntegration(
       manageLambdas.deleteAssociationLambda
     );
+    const lambdaCreateVoteInCache = new apigateway.LambdaIntegration(
+      votesLambda.createVotesInCacheLambda
+    );
+    const lambdaGetAllVotesInCache = new apigateway.LambdaIntegration(
+      votesLambda.getAllVotesInCacheLambda
+    );
+    const lambdaConfirmVotes = new apigateway.LambdaIntegration(
+      votesLambda.confirmVotesLambda
+    );
 
     //RESOURCE
     createUserVoteResources(
@@ -136,7 +139,6 @@ export class PesquisaStack extends cdk.Stack {
       lambdaUpdateRoleUserAdmin,
       lambdaValideTokenUserAdmin
     );
-
     createManageResources(
       api,
       lambdaCreateCompany,
@@ -156,6 +158,12 @@ export class PesquisaStack extends cdk.Stack {
       lambdaDeleteCompany,
       lambdaDeleteCategory,
       lambdaDeleteAssociation
+    );
+    createVotesResources(
+      api,
+      lambdaCreateVoteInCache,
+      lambdaGetAllVotesInCache,
+      lambdaConfirmVotes
     );
 
     //SNS

@@ -34,6 +34,7 @@ export async function createCategoriesService(
 ) {
   const categoryExist: AssociationCompanyAndCategory[] = [];
   const categoryNotExist: AssociationCompanyAndCategory[] = [];
+  console.log(categoryNotExist);
   try {
     const categoriesInDB = await getAllCategory();
     for (const category of categories) {
@@ -45,7 +46,6 @@ export async function createCategoriesService(
         categoryNotExist.push(category);
       }
     }
-
     await createCategoryExist(categoryExist);
     await createCategoryNotExist(categoryNotExist);
   } catch (e: any) {

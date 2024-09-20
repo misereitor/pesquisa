@@ -1,5 +1,6 @@
 import pool from '../../../config/db/config';
 import { UserVote } from '../../types/user-vote';
+import { VotesConfirmed } from '../../types/votes';
 
 export async function createUserVote(user: UserVote) {
   const client = await pool.connect();
@@ -140,18 +141,22 @@ export async function updateUserVotePhoneConfirmed(phone: string) {
 }
 
 export async function updateUserVoteAfterVoteConfirm(
-  id_user_vote: number,
-  percentage_vote: number
+  userVote: UserVote,
+  votes: VotesConfirmed[]
 ) {
   const client = await pool.connect();
   try {
     const query = {
-      text: 'UPDATE users_vote SET percentage_vote = ($1), confirmed_vote = true, date_vote = CURRENT_TIMESTAMP WHERE ID = ($2) RETURNING *',
-      values: [percentage_vote, id_user_vote],
-      rowMode: 'single'
+      text: `
+      UPDATE users_vote
+      SET 
+        confirmed_vote = true, date_vote = CURRENT_TIMESTAMP,
+        percentage_vote = $2, votes = $3
+      WHERE ID = $1
+      `,
+      values: [userVote.id, userVote.percentage_vote, JSON.stringify(votes)]
     };
-    const { rows } = await client.query(query);
-    return rows[0] as unknown as UserVote;
+    await client.query(query);
   } catch (e: any) {
     console.warn(e);
     throw new Error(e.message);

@@ -7,13 +7,13 @@ export async function createConfirmedLogin(confirmed: ConfirmedPhone) {
     const query = {
       text: `
       INSERT INTO confirmed_phone
-      (phone, id_user, expiration_date, code)
+      (phone, id_user_vote, expiration_date, code)
         VALUES
       ($1, $2, $3, $4) RETURNING *
       `,
       values: [
         confirmed.phone,
-        confirmed.id_user,
+        confirmed.id_user_vote,
         confirmed.expiration_date,
         confirmed.code
       ]
