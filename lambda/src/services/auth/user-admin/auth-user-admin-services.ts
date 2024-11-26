@@ -13,7 +13,12 @@ export async function loginUserAdminService(
     const user = await checksUser(username);
     await chackPassword(user, password);
     const token = createToken(user);
-    return token;
+    user.password = '';
+    const login = {
+      ...user,
+      token
+    };
+    return login;
   } catch (error: any) {
     throw new Error(error.message);
   }

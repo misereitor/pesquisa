@@ -3,12 +3,12 @@ import { confirmCode } from '../../../services/auth/user-vote/auth-user-vote-ser
 exports.handler = async (event: any) => {
   const { phone, code } = JSON.parse(event.body);
   try {
-    const token = await confirmCode(code, phone);
+    const login = await confirmCode(code, phone);
     return {
       statusCode: 200,
       body: JSON.stringify({
         message: 'success',
-        data: token
+        data: login
       })
     };
   } catch (error: any) {

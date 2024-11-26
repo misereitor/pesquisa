@@ -3,12 +3,12 @@ import { loginUserAdminService } from '../../../services/auth/user-admin/auth-us
 exports.handler = async (event: any) => {
   try {
     const { username, password } = JSON.parse(event.body);
-    const tokenLogin = await loginUserAdminService(username, password);
+    const login = await loginUserAdminService(username, password);
     return {
       statusCode: 200,
       body: JSON.stringify({
         message: 'success',
-        data: tokenLogin
+        data: login
       })
     };
   } catch (error: any) {

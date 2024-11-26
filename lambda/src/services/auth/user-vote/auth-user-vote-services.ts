@@ -154,7 +154,11 @@ export async function confirmCode(code: string, phone: string) {
     const deleteCode = await deleteCodeConfirmed(valide.id);
     const confirmUserCode = await updateUserVotePhoneConfirmed(phone);
     await Promise.all([valide, gerateToken, deleteCode, confirmUserCode]);
-    return gerateToken;
+    const login = {
+      ...confirmUserCode,
+      gerateToken
+    };
+    return login;
   } catch (error: any) {
     throw new Error(error.message);
   }
